@@ -7,7 +7,7 @@
     "@oracle/oraclejet": "~11.0.1"
   },
   "scripts": {
-     "build": "npx ojet build web"
+     "build": "npx ojet build web --release"
   },
   "devDependencies": {
     "fs-extra": "^8.1.0",
