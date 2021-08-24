@@ -5,7 +5,7 @@
   
 .filmstrip-item {
     box-sizing: border-box;
-    width: auto;
+    width: 500px;
     --oj-typography-body-lg-font-size: 17px;
     font-weight: 500;
     color: #000000
@@ -62,14 +62,10 @@ html[dir="rtl"] .paging-container {
   background-color: #145e96;
   border-color: #145e96;
 }
-/* Medium and large Screens */
-@media screen and (min-width: 769px) {
+@media screen and (max-width: 768px) {
   .filmstrip-item {
-      width: 500px;
+      width: auto;
   }
-  .filmstrip {
-    height: 10rem;
-}
 }
 /* End of Film Strip CSS */
 .brand__name {
