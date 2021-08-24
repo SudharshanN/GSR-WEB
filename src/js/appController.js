@@ -66,7 +66,7 @@ define(['knockout', 'ojs/ojcontext', 'ojs/ojmodule-element-utils', 'ojs/ojknocko
       // Close offcanvas on medium and larger screens
       this.mdScreen.subscribe(() => {OffcanvasUtils.close(this.drawerParams);});
       this.drawerParams = {
-        displayMode: 'push',
+        displayMode: 'overlay',
         selector: '#navDrawer',
         content: '#pageContent'
       };
