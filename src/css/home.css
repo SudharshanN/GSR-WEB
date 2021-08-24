@@ -151,10 +151,8 @@ html[dir="rtl"] .paging-container {
     width: 100%;
     padding: 30px;
     position: relative;
-    background: linear-gradient(
-141deg
-, rgb(37, 120, 158) 0%, rgb(1, 55, 117) 100%);
-    color: rgb(255, 255, 255);
+    background: -webkit-linear-gradient(-264deg, rgba(6, 155, 187, 1) 0%, rgba(0, 81, 149, 1) 100%);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(-264deg, rgba(6, 155, 187, 1) 0%, rgba(0, 81, 149, 1) 100%); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 .wrapper .content h3{
     font-size: 20px;
@@ -241,10 +239,8 @@ html[dir="rtl"] .paging-container {
     width: 100%;
     padding: 30px;
     position: relative;
-    background: linear-gradient(
-141deg
-, rgb(74, 128, 163) 0%, rgb(0, 58, 112) 100%);
-    color: rgb(255, 255, 255);
+    background: -webkit-linear-gradient(-264deg, rgba(6, 155, 187, 1) 0%, rgba(0, 81, 149, 1) 100%);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(-264deg, rgba(6, 155, 187, 1) 0%, rgba(0, 81, 149, 1) 100%); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 .content-wrapper .content1 h3{
     font-size: 20px;
@@ -260,7 +256,6 @@ html[dir="rtl"] .paging-container {
   color: #fff;
 }
 .home.title{
-  width:65%;
   max-width: 800px;
 }
 
