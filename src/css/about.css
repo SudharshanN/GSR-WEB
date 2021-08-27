@@ -10,9 +10,8 @@
 .about__about-doc{
   background-image: url(images/about.png);
   background-repeat: no-repeat;
-  background-size: contain; 
+  background-size: cover; 
   height: 416px;
-  background-position: center;
 }
 .about__about-doc-overlay{
   position: absolute;
@@ -24,9 +23,8 @@
 .about__about-clock{
   background-image: url(images/aboutus-2.png);
   background-repeat: no-repeat;
-  background-size: contain; 
+  background-size: cover; 
   height: 416px;
-  background-position: center;
 }
 .about__about-clock-overlay{
   position: absolute;
