@@ -34,3 +34,51 @@
   right: 138px;
   color: #fff;
 }
+.about__margin-top-48 {
+  margin-top: 48px;
+}
+.about__margin-bottom-74 {
+  margin-bottom: 74px;
+}
+@media screen and (max-width: 425px) {
+  .about__about-doc-overlay{
+    position: inherit;
+    width: auto;
+    padding: 10px;
+  }
+  .about__about-clock-overlay{
+    position: inherit;
+    width: auto !important;
+    padding: 10px;
+    margin: 10px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .page__padding {
+    padding: 5px !important;
+  }
+  .about__about-doc-overlay{
+    margin: 10px;
+    top: 620px;
+  }
+  .about__about-clock-overlay{
+    bottom: 360px !important;
+    width: 440px;
+    right: 40px !important;
+  }
+}
+@media screen and (max-width: 1024px) {
+  .page__padding {
+    padding: 30px;
+  }
+  .about__about-clock-overlay{
+    bottom: 316px;
+    right: 65px;
+  }
+  .about__margin-top-48 {
+    margin-top: 30px;
+  }
+  .about__margin-bottom-74 {
+    margin-bottom: 30px;
+  }
+}
