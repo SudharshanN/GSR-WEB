@@ -47,6 +47,13 @@ define(['knockout', 'ojs/ojcontext', 'ojs/ojmodule-element-utils', 'ojs/ojknocko
         { path: 'focus', detail: { label: 'Our Focus Areas', iconClass: '' } },
         { path: 'contact', detail: { label: 'Contact Us', iconClass: '' } },
       ];
+      let navData2 = [
+        { path: 'home', detail: { label: 'Home', iconClass: '' } },
+        { path: 'about', detail: { label: 'About Us', iconClass: '' } },
+        { path: 'focus', detail: { label: 'Our Focus Areas', iconClass: '' } },
+        { path: 'contact', detail: { label: 'Contact Us', iconClass: '' } },
+        { path: 'joinus', detail: { label: 'Join Us', iconClass: '' } }
+      ];
 
       // Router setup
       this.router = new CoreRouter(navData, {
@@ -61,6 +68,7 @@ define(['knockout', 'ojs/ojcontext', 'ojs/ojmodule-element-utils', 'ojs/ojknocko
       // Setup the navDataProvider with the routes, excluding the first redirected
       // route.
       this.navDataProvider = new ArrayDataProvider(navData1, {keyAttributes: "path"});
+      this.navDrawer = new ArrayDataProvider(navData2, {keyAttributes: "path"});
 
       // Drawer
       // Close offcanvas on medium and larger screens

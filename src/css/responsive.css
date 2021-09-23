@@ -12,7 +12,22 @@
     }
 
 }
-
+@media (min-width:600px) and (max-width:800px) {
+    .oj-navigationlist-horizontal:not(.oj-navigationlist-icon-only) .oj-navigationlist-item {
+        margin-inline-end: 15px;
+    }
+}
+@media (min-width: 768px) and (max-width:1023px) {
+    .img-bg-1 {
+        display: none;
+    }
+}
+@media (max-width:375px) {
+    .about__about-doc {
+        background-size: contain;
+        height: 115px;
+    }
+}
 @media (min-width:996px) and (max-width:1240px) {
     .header .img-bg {
         position: absolute;
