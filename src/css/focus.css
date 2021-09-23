@@ -17,8 +17,14 @@
     color: rgba(0, 180, 177, 1);
     line-height: 28px;
 }
+
+.linear__gradient{
+    background: linear-gradient(to right, #00b4b1 0%, #026ca8 31%);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+}
 .img-bg-health{
-    background-image: url(images/focus_2.png);
+    background-image: url('images/focus_2.png');
     
 }
 .img-bg-education{
@@ -34,7 +40,7 @@
     height: 100% !important;
 }
 .img-bg-1 {
-    background-image: url(images/focus_1.png);
+    background-image: url('images/focus_1.png');
     height: 385px !important;
     width: 535px;
     top: 290px;
@@ -43,6 +49,17 @@
     background-repeat: no-repeat;
 }
 
+@media (min-width: 1024px){
+    .img-bg-1 {
+        background-image: url('images/focus_1.png');
+        height: 425px !important;
+        width: 535px;
+        top: 290px;
+        background-size: cover;
+        position: absolute;
+        background-repeat: no-repeat;
+    }
+}
 @media screen and (max-width: 1600px) {
     .img-bg-1 {
         width: 320px !important;
@@ -50,7 +67,7 @@
     }
     
 }
-@media screen and (max-width: 1145px) {
+@media screen and (max-width: 700px) {
     .img-bg-1 {
         display: none;
     }
@@ -65,4 +82,10 @@
     .img-bg-letter {
         height: 674px !important;
     }
+}
+
+@media screen and (max-width: 600px) {
+.brand__name h1 {
+ font-size: 10px;
+}
 }

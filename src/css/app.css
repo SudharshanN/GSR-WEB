@@ -103,7 +103,7 @@ a.oj-navigationlist-item-content > .oj-navigationlist-item-label {
 .oj-web-applayout-header {
   border: 0;
 }
-
+ 
 .title__subheading {
   font-family: 'Montserrat', sans-serif;
   font-size: 18pt;
@@ -119,4 +119,11 @@ a.oj-navigationlist-item-content > .oj-navigationlist-item-label {
 }
 .app__fz-600 {
   font-weight: 600 !important;
+}
+
+@media screen and (max-width: 600px){
+.title__subheading {
+  font-size: 12pt;
+
+}
 }

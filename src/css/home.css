@@ -56,7 +56,7 @@ html[dir="rtl"] .paging-container {
 .film__strip__outer__container {
     display: inline-block;
     position: relative;
-    padding-inline-end: 10rem;
+    /* padding-inline-end: 10rem; */
 }
 .oj-pagingcontrol-nav-dot-bullet.oj-selected, .oj-pagingcontrol-nav-dot-bullet.oj-hover {
   background-color: #145e96;
@@ -81,9 +81,9 @@ html[dir="rtl"] .paging-container {
   max-width: 800px;
 }
 
- .main{
+ /* .main{
    margin-top: 70px;
- }
+ } */
  .oj-selected.oj-active.oj-pagingcontrol-nav-dot{
    border:1px solid rgba(6, 155, 187, 1);
    border-radius: 100%;
@@ -192,7 +192,7 @@ html[dir="rtl"] .paging-container {
     box-sizing: border-box;
     width: 100%;
     padding: 20px 15px 0px;
-    margin: 0px auto;
+    margin: 90px auto;
     max-width: 1440px;
     /* display: ; */
      flex-flow: row nowrap;
@@ -264,19 +264,20 @@ html[dir="rtl"] .paging-container {
 .header{
   position: relative;
   box-sizing: border-box;
-  width: 100%;
-  margin:56px 0;
-  position: relative;
+  padding: 0 100px;
+ 
 }
 
 .header .video-block{
   background-image:  url('../css/images/hands.png');
+  
 }
 .header .founders-block{
   background-image:  url('../css/images/founder.png');
+ 
 }
 .header div .header-content{
-  width:100%;
+  width:85%;
   margin-top: 0px;
   margin-bottom: 250px;
 
@@ -314,4 +315,19 @@ html[dir="rtl"] .paging-container {
 .oj-pagingcontrol-nav-dot-bullet {
   background-color: #bbb;
   border: none;
+}
+
+
+
+@media screen and (max-width: 600px) {
+ .header {
+   padding:0px;
+  margin: auto;
+ }
+}
+
+@media screen and (max-width: 600px){
+.title__subheading h1{
+  font-size: 10px;
+}
 }

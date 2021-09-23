@@ -14,7 +14,7 @@
   height: 416px;
 }
 .about__about-doc-overlay{
-  position: absolute;
+  position: absolute; 
   top: 545px;
   background: linear-gradient(-264deg, rgba(6, 155, 187, 1) 0%, rgba(0, 81, 149, 1) 100%);
   width: 400px;
