@@ -44,6 +44,9 @@ h1, H1 {
 .gsr-icon:before {
   content: url(images/gsr_logo.svg);
 }
+.oj-navigationlist-item{
+  display: flex;
+}
 .oj-navigationlist-item.oj-selected {
   border-color: rgba(0, 81, 149, 1);
 }
@@ -60,7 +63,14 @@ a.oj-navigationlist-item-content > .oj-navigationlist-item-label {
 .oj-navigationlist-horizontal .oj-navigationlist-item.oj-hover:not(.oj-selected) .oj-navigationlist-item-icon {
   color:  rgba(20, 94, 150, 1);
 }
-
+.width-full > button.oj-button-button {
+  background: #1c92d2;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(-264deg, rgba(6, 155, 187, 1) 0%, rgba(0, 81, 149, 1) 100%);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(-264deg, rgba(6, 155, 187, 1) 0%, rgba(0, 81, 149, 1) 100%); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+.width-full{ 
+  width: 70%;
+}
 .join__us > button.oj-button-button {
   border-radius: 1.32rem;
   width: 125px;

@@ -39,20 +39,23 @@ define(['knockout', 'ojs/ojcontext', 'ojs/ojmodule-element-utils', 'ojs/ojknocko
         { path: 'about', detail: { label: 'About Us', iconClass: '' } },
         { path: 'focus', detail: { label: 'Our Focus Areas', iconClass: '' } },
         { path: 'contact', detail: { label: 'Contact Us', iconClass: '' } },
-        { path: 'joinus', detail: { label: 'Join Us', iconClass: '' } }
+        { path: 'joinus', detail: { label: 'Join Us', iconClass: '' } },
+        { path: 'healthCampaign', detail: { label: 'Health Campaign', iconClass: '' } }
       ];
       let navData1 = [
         { path: 'home', detail: { label: 'Home', iconClass: '' } },
         { path: 'about', detail: { label: 'About Us', iconClass: '' } },
         { path: 'focus', detail: { label: 'Our Focus Areas', iconClass: '' } },
         { path: 'contact', detail: { label: 'Contact Us', iconClass: '' } },
+        { path: 'healthCampaign', detail: { label: 'Health Campaign', iconClass: '' } }
       ];
       let navData2 = [
         { path: 'home', detail: { label: 'Home', iconClass: '' } },
         { path: 'about', detail: { label: 'About Us', iconClass: '' } },
         { path: 'focus', detail: { label: 'Our Focus Areas', iconClass: '' } },
         { path: 'contact', detail: { label: 'Contact Us', iconClass: '' } },
-        { path: 'joinus', detail: { label: 'Join Us', iconClass: '' } }
+        { path: 'joinus', detail: { label: 'Join Us', iconClass: '' } },
+        { path: 'healthCampaign', detail: { label: 'Health Campaign', iconClass: '' } }
       ];
 
       // Router setup

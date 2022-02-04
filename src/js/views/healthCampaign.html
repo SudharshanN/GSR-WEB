@@ -1,0 +1,43 @@
+<!--
+ Copyright (c) 2014, 2021, Oracle and/or its affiliates.
+ Licensed under The Universal Permissive License (UPL), Version 1.0
+ as shown at https://oss.oracle.com/licenses/upl/
+ -->
+<div class="oj-hybrid-padding page__padding">
+  <div class="oj-lg-padding-5x-horizontal oj-md-padding-3x-horizontal oj-sm-padding-3x-horizontal">
+    <h1 class="linear__gradient oj-typography-heading-2xl oj-lg-margin-1x-bottom">Medical Campaign, Kothagudem</h1>
+    <h6 class="linear__gradient oj-lg-margin-6x-bottom">Saturday, 12th February 2022 </h6>
+  </div>
+  <div class="oj-sm-12">
+    <div class="oj-lg-padding-5x-horizontal oj-md-padding-3x-horizontal oj-sm-padding-3x-horizontal">
+      <oj-form-layout id="myform" label-edge="top" columns="2" max-columns="2" direction="row"
+        user-assistance-density="efficient">
+        <oj-input-text id="name" placeholder='Please enter name' value='{{name}}' label-hint="Name" required="true">
+        </oj-input-text>
+        <oj-input-text id="age" placeholder='Please enter age' value='{{age}}' label-hint="Age" required="true">
+        </oj-input-text>
+        <oj-input-text id="email" placeholder='Please enter email' value='{{email}}' label-hint="Email" required="true">
+        </oj-input-text>
+        <oj-input-text id="mobile" placeholder='Please enter mobile number' value='{{mobile}}'
+          label-hint="Mobile Number" required="true">
+        </oj-input-text>
+        <oj-input-text id="gender" placeholder='Please enter gender' value='{{gender}}' label-hint="Gender"
+          required="true">
+        </oj-input-text>
+        <oj-input-text id="familyMembers" placeholder='Please enter no of family members' value='{{familyMembers}}'
+          label-hint="No Of Family Members" required="true">
+        </oj-input-text>
+        <oj-text-area id="address" label-hint="Address" rows="5" placeholder='Enter Address' value='{{address}}'
+          required="true"></oj-text-area>
+          <oj-text-area id="symptoms" label-hint="Symptoms" rows="5" placeholder='Enter Symptoms' value='{{symptoms}}'
+          required="true"></oj-text-area>
+      </oj-form-layout>
+      <div class="oj-sm-margin-10x-horizontal oj-flex oj-sm-flex-items-initial oj-sm-justify-content-space-around">
+        <oj-button id="chroming_button5" chroming="callToAction" class="width-full" on-oj-action="[[submitForm]]">
+          Submit
+      </oj-button> 
+      </div>
+    </div>
+  </div>
+
+</div>
