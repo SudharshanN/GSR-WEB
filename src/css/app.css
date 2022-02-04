@@ -1,11 +1,25 @@
 /*
-    Document   : override
-    Created on : <date>
-    Author     : <author>
-    Description:
-        This is where any of your application specific styles should be included
+  Document   : override
+  Created on : <date>
+  Author     : <author>
+  Description:
+      This is where any of your application specific styles should be included
 */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;600;700;800&family=Roboto+Condensed:wght@700&display=swap');
+@import 'home.css';
+@import 'focus.css';
+@import 'joinus.css';
+@import 'contact.css';
+@import 'about.css';
+@import 'responsive.css';
+body, html{
+  font-family: 'Montserrat', sans-serif;
+}
 
+.main{
+  max-width: 1440px;
+  margin:70px auto;
+}
 .sendOffScreen {
   position: absolute;
   left: -10000px;
@@ -14,12 +28,24 @@
   height: 1px;
   overflow: hidden;
 }
+* {
+  font-family: 'Montserrat', sans-serif;
+}
+h1, H1 {
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 55px;
+}
 .gsr-icon {
   width: 137px !important;
   height: 60px !important;
+  cursor: pointer;
 }
+
 .gsr-icon:before {
   content: url(images/gsr_logo.svg);
+}
+.oj-navigationlist-item{
+  display: flex;
 }
 .oj-navigationlist-item.oj-selected {
   border-color: rgba(0, 81, 149, 1);
@@ -27,7 +53,7 @@
 .oj-selected > a.oj-navigationlist-item-content > .oj-navigationlist-item-label {
   color: rgba(20, 94, 150, 1);
 }
-a.oj-navigationlist-item-content > .oj-navigationlist-item-label {
+a.oj-navigationlist-item-content > .oj-navigationlist-item-label { 
   color: rgba(20, 94, 150, 1);
 }
 .oj-navigationlist-horizontal .oj-navigationlist-item.oj-hover:not(.oj-selected) a.oj-navigationlist-item-content > .oj-navigationlist-item-label {
@@ -37,10 +63,77 @@ a.oj-navigationlist-item-content > .oj-navigationlist-item-label {
 .oj-navigationlist-horizontal .oj-navigationlist-item.oj-hover:not(.oj-selected) .oj-navigationlist-item-icon {
   color:  rgba(20, 94, 150, 1);
 }
-
+.width-full > button.oj-button-button {
+  background: #1c92d2;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(-264deg, rgba(6, 155, 187, 1) 0%, rgba(0, 81, 149, 1) 100%);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(-264deg, rgba(6, 155, 187, 1) 0%, rgba(0, 81, 149, 1) 100%); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+.width-full{ 
+  width: 70%;
+}
 .join__us > button.oj-button-button {
   border-radius: 1.32rem;
   width: 125px;
   height: 45px;
-  background-image: linear-gradient(to left , rgb(6, 109, 156),rgb(4, 124, 124),rgb(53, 187, 136));
+  background: #1c92d2;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(-264deg, rgba(6, 155, 187, 1) 0%, rgba(0, 81, 149, 1) 100%);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(-264deg, rgba(6, 155, 187, 1) 0%, rgba(0, 81, 149, 1) 100%); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+.bottom__footer {
+  background: #1c92d2;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(-264deg, rgba(6, 155, 187, 1) 0%, rgba(0, 81, 149, 1) 100%);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(-264deg, rgba(6, 155, 187, 1) 0%, rgba(0, 81, 149, 1) 100%); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+.oj-web-applayout-footer-item {
+  color: #FFFFFF !important;
+}
+.bottom__footer .oj-navigationlist-item.oj-selected {
+  border-color:#FFFFFF;
+}
+.bottom__footer .oj-selected > a.oj-navigationlist-item-content > .oj-navigationlist-item-label {
+  color: #FFFFFF;
+}
+.bottom__footer a.oj-navigationlist-item-content > .oj-navigationlist-item-label { 
+  color: #FFFFFF;
+}
+.bottom__footer .oj-navigationlist-horizontal .oj-navigationlist-item.oj-hover:not(.oj-selected) a.oj-navigationlist-item-content > .oj-navigationlist-item-label {
+  color: #FFFFFF;
+}
+
+.bottom__footer .oj-navigationlist-horizontal .oj-navigationlist-item.oj-hover:not(.oj-selected) .oj-navigationlist-item-icon {
+  color:  #FFFFFF;
+}
+.join__us__footer > button.oj-button-button {
+  border-radius: 1.32rem;
+  width: 125px;
+  height: 45px;
+  background-color: #FFFFFF !important;
+  color: #005195 !important;
+}
+.oj-web-applayout-header {
+  border: 0;
+}
+ 
+.title__subheading {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 18pt;
+}
+.app__fz-17 {
+  font-size: 17px !important;
+}
+.app__lh-26 {
+  line-height: 26px !important;
+}
+.app__lh-28 {
+  line-height: 28px !important;
+}
+.app__fz-600 {
+  font-weight: 600 !important;
+}
+
+@media screen and (max-width: 600px){
+.title__subheading {
+  font-size: 12pt;
+
+}
 }

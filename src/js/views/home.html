@@ -1,0 +1,186 @@
+<!--
+ Copyright (c) 2014, 2021, Oracle and/or its affiliates.
+ Licensed under The Universal Permissive License (UPL), Version 1.0
+ as shown at https://oss.oracle.com/licenses/upl/
+ -->
+<div class="oj-hybrid-padding ">
+  <div class="header oj-md-margin-6x-vertical ">
+    <h1 class="linear__gradient oj-typography-heading-2xl oj-lg-margin-6x-bottom">Vidya, Arogyam, Upadi<br>Ujwala Bhavishyattu Kosam</h1>
+    <div>
+      <div id="filmStripDiv" class="film__strip__outer__container">
+        <div class="filmstrip-wrapper">
+          <oj-film-strip id="filmStrip" class="filmstrip" aria-label="Set of chemicals" orientation="vertical"
+            max-items-per-page="1" arrow-visibility="hidden" data-oj-context>
+            <oj-bind-for-each data="[[chemicals]]">
+              <template data-oj-as="chemical">
+                <div class="filmstrip-item oj-text-color-primary"
+                  :style.display="[[getItemInitialDisplay(chemical.index)]]">
+                  <div class="oj-typography-body-lg">
+                    <span>
+                      <oj-bind-text value="[[chemical.data.name]]"></oj-bind-text>
+                    </span>
+                  </div>
+                  <div class="oj-sm-padding-10x-top oj-typography-body-lg">
+                    <oj-button class="oj-button-sm" chroming="borderless" on-oj-action="[[() => app.routeToPage(chemical.data.link)]]">
+                      <a style="text-decoration: underline;">Explore More</a>
+                    </oj-button>
+                  </div>
+                </div>
+              </template>
+            </oj-bind-for-each>
+          </oj-film-strip>
+        </div>
+
+        <div class="paging-container">
+          <oj-paging-control id="pagingControl" data="[[pagingModel]]" page-size="0"
+            page-options='{"type": "dots", "orientation": "vertical"}'>
+          </oj-paging-control>
+        </div>
+      </div>
+      <div class="header-content">
+        <div class="video-block">
+          
+          <div class="youtube-link">
+            <div class="oj-flex oj-sm-align-items-center">
+              <div class="oj-flex-item oj-sm-padding-2x-horizontal">
+                <oj-avatar id='openPreview' role="img" background='lilac' icon-class='oj-ux-ico-play' shape='circle' on-click="[[openVideo]]"></oj-avatar>
+                <!-- <oj-button id="icon_button1" display='icons' chroming="borderless" color="blue">
+                  
+                </oj-button> -->
+              </div>
+              <div class="oj-flex-item oj-sm-padding-2x-horizontal">
+                <span class="oj-padding-5x-right">
+                Introduction to GSR Charitable Trust
+                </span>
+              </div>
+            </div>           
+          </div>
+        </div>
+        <div class="founders-block"></div>
+      </div>
+
+    </div>
+    <div class="img-bg"></div>
+  </div>
+
+  <div class="oj-flex focus__span-fw-18 oj-sm-padding-5x-top  oj-dm-padding-5x-top oj-lg-padding-10x-top oj-sm-align-items-center">
+    <div class="oj-sm-12 oj-md-12 oj-lg-6 oj-xl-6 oj-flex-item ">
+    <div class="oj-lg-padding-10x-horizontal">
+      <div class="home__content-span-1">
+        <span class="home__content-font-size">
+          The outbreak of the novel corona virus and its disease COVID-19 presented 
+          an unprecedented challenge for humanity. This pandemic changed all the aspects of
+          our lives and will leave some scars in the post-pandemic world as well. 
+          At GSR, our focus is to Mitigate certain ills of it a dedicated commitment on 
+          three primary aspects: <span class="home__content"> Healthcare, Education,</span> and <span class="home__content">Employment.</span> 
+          <br>
+        </span>
+      </div>
+      <div class="oj-sm-margin-10x-top home__content-span">
+        <span class="home__content-span-2">
+          We are social entrepreneurs creatively and relentlessly seeking solutions to 
+          the existing problems in our country and paving the way for a 
+          better and brighter India.
+        </span>
+      </div>
+    </div>
+    </div>
+    <div class="oj-sm-12 oj-md-12 oj-lg-6 oj-xl-6 oj-flex-item ">
+      <div class="oj-lg-padding-10x-horizontal">
+        <div>
+          <span class="home__content-font-size">
+            <span class="home__content"> Our mission </span> is to build,develop,  and scale up social solutions in ways that bring about 
+            truly revolutionary changes in Health, Education and Employment We emphasise not just on relieving the pains of a social 
+            problem but on finding ways to get to the root causes and address them, bringing about 
+            positive changes on a grand scale  and on ground,in ways that others can replicate.
+          </span>
+            <div class="oj-sm-padding-10x-top oj-sm-padding-10x-bottom">
+              <span class="home__content-font-size">
+               For this, We have set our sight in providing universal access to healthcare, 
+                education and creating Employment job opportunities
+              </span>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+
+  <section class="container ">
+    <div class="wrapper">
+      <div class="block">
+        <span class="span">
+          <div class="bg"></div>
+        </span>
+      </div>
+      <div class="content">
+        <h3 class="title__subheading">HEALTHCARE</h3>
+        <p>Our goal is to offer reliable, affordable, and quality health care services to the
+          marginalized communities that do not have access to these services. </p>
+      </div>
+    </div>
+  </section>
+
+
+
+  <div class="container">
+    <div class="oj-flex">
+      <div class="oj-sm-12 oj-md-12 oj-lg-6  oj-xl-6  oj-flex-item oj-md-padding-10x">
+        <div class="education-block">
+          <h1 class="title__subheading">EDUCATION</h1>
+          <div class="oj-md-padding-5x-bottom oj-lg-padding-10x-bottom" style="font-size: 18px; line-height: 28px;">
+            <span>We strive to ensure that every child gets equal learning opportunities
+              and quality education that makes the future generation self-reliant.</span>
+          </div>
+          
+          <img src="css/images/Group_7_Copy-2x.png">
+        </div>
+      </div>
+      <div class="oj-sm-12 oj-md-12 oj-lg-6  oj-xl-6  oj-flex-item oj-md-padding-10x">
+        <div class="employment-block">
+
+          <img src="css/images/Group_7-2x.png">
+          <h1 class="mt-5 title__subheading">EMPLOYMENT</h1>
+          <div class="oj-md-padding-5x-bottom oj-lg-padding-10x-bottom" style="font-size: 18px; line-height: 28px;">
+            <span>We want to make the youth of our country cross-skilled, employable, and self reliant.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="container mb-4">
+      <div class="content-wrapper">
+        <div class="gsr-block">
+          <span class="gsr-span">
+            <div class="gsr-bg"></div>
+          </span>
+        </div>
+        <div class="content1">
+          <h3 class="title__subheading">JOIN US</h2>
+            <p>We need supporters, partners, staff, and volunteers like you
+              who share our commitment to the well being of our society. Every person plays a
+              key role in keeping us working toward this ultimate goal. Are you ready? </p>
+            <br />
+            <br />
+            <oj-button class="oj-button-sm" chroming="borderless" on-oj-action="[[() => app.routeToPage('joinus')]]">
+              <a style="color: #fff; text-decoration: underline;">Explore More</a>
+            </oj-button>
+        </div>
+      </div>
+    </section>
+  </div>
+
+<div id="dialogWrapper">
+  <oj-dialog id="dialog1" dialog-title="GSR Vision" cancel-behavior="none">
+      <div slot="body">
+        <video id="videoContainer" width="500" controls>
+          <source src="css/images/GSR Script Video.mp4" type="video/mp4">
+          Your browser does not support HTML video.
+        </video>
+      </div>
+      <div slot="footer">
+        <oj-button id="okButton" chroming="borderless" on-oj-action="[[closeVideo]]">Close</oj-button>
+      </div>
+  </oj-dialog>
+</div>

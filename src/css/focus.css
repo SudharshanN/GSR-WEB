@@ -1,0 +1,91 @@
+.focus__image-props {
+    background-repeat: no-repeat;
+    background-size: inherit; 
+    height: 674px;
+    background-position: center;
+}
+
+.focus__span-fw-18 span {
+    font-family: 'Montserrat', sans-serif;
+    line-height: 28px; 
+    font-size: 16px;
+}
+.focus__founder {
+    font-family: 'Montserrat';
+    font-size: 18px;
+    font-weight: bold;
+    color: rgba(0, 180, 177, 1);
+    line-height: 28px;
+}
+
+.linear__gradient{
+    background: linear-gradient(to right, #00b4b1 0%, #026ca8 31%);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+}
+.img-bg-health{
+    background-image: url('images/focus_2.png');
+    
+}
+.img-bg-education{
+    background-image: url('images/focus_3.png');
+}
+
+.img-bg-employment{
+    background-image: url('images/focus_4.png');
+}
+
+.img-bg-letter{
+    background-image: url('images/focus_5.png');
+    height: 100% !important;
+}
+.img-bg-1 {
+    background-image: url('images/focus_1.png');
+    height: 385px !important;
+    width: 535px;
+    top: 290px;
+    background-size: cover;
+    position: absolute;
+    background-repeat: no-repeat;
+}
+
+@media (min-width: 1024px){
+    .img-bg-1 {
+        background-image: url('images/focus_1.png');
+        height: 425px !important;
+        width: 535px;
+        top: 290px;
+        background-size: cover;
+        position: absolute;
+        background-repeat: no-repeat;
+    }
+}
+@media screen and (max-width: 1600px) {
+    .img-bg-1 {
+        width: 320px !important;
+        background-size: auto;
+    }
+    
+}
+@media screen and (max-width: 700px) {
+    .img-bg-1 {
+        display: none;
+    }
+    
+}
+.focus__bg-color {
+    background-color: #00b4b1;
+    color: #ffffff;
+    font-size: 18px;
+}
+@media screen and (max-width: 1023px) {
+    .img-bg-letter {
+        height: 674px !important;
+    }
+}
+
+@media screen and (max-width: 600px) {
+.brand__name h1 {
+ font-size: 10px;
+}
+}

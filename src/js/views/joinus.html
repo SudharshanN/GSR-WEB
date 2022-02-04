@@ -1,0 +1,51 @@
+<!--
+ Copyright (c) 2014, 2021, Oracle and/or its affiliates.
+ Licensed under The Universal Permissive License (UPL), Version 1.0
+ as shown at https://oss.oracle.com/licenses/upl/
+ -->
+<div class="oj-hybrid-padding page__padding">
+  <div class="oj-flex oj-xl-flex-items-initial oj-xl-justify-content-space-around">
+    <div class="oj-sm-12 oj-md-12 oj-lg-7 oj-xl-7 oj-flex-item oj-lg-padding-10x-end">
+      <div>
+        <h1 class="linear__gradient oj-typography-heading-2xl oj-lg-margin-6x-bottom">
+          <oj-bind-text value="Join Us"></oj-bind-text>
+        </h1>
+      </div>
+      <div class="contact__fs-lh-17-28">
+        <span class="oj-helper-text-align-justify app__fz-17 oj-typography-semi-bold app__lh-26">
+          We need supporters, partners, staff, and volunteers like you who share our commitment to the well-being of our society. 
+          Every person plays a key role in keeping us working toward this ultimate goal. Are you ready?
+          <br>
+          <br>
+          If you feel an inner calling, a persistent need to do more for the world, we will help you convert this call in to an action. 
+          So become a change agent today by joining us in any of our initiatives. Remember, you can make a difference.
+        </span>
+      </div>
+      <div class="oj-sm-padding-10x-vertical">
+        <oj-form-layout id="ofl1" label-edge="inside" max-columns="2" direction="row" user-assistance-density="compact">
+          <oj-input-text id="f1" label-hint="First Name"></oj-input-text>
+          <oj-input-text id="f2" label-hint="Last Name"></oj-input-text>
+          <oj-input-text id="f3" label-hint="Email"></oj-input-text>
+          <oj-input-text id="f4" label-hint="Phone No."></oj-input-text>
+          <oj-select-single data="[[locationsDP]]"
+                value=""
+                label-hint="Location">
+          </oj-select-single>
+          <oj-select-single data="[[rolesDP]]"
+                value=""
+                label-hint="Intrested Role">
+          </oj-select-single>
+        </oj-form-layout>
+      </div>
+      <div class="oj-md-float-end">
+        <oj-button id="chroming_button5" chroming="callToAction" class="contact__send__btn oj-sm-width-full oj-lg-only-padding-10x-end">
+          Send
+        </oj-button> 
+      </div>
+    </div>
+    <div class="oj-sm-12 oj-md-width-12 oj-lg-5 oj-xl-5 oj-flex-item oj-sm-only-padding-4x-top ">
+      <div class="join__hand__image ">
+      </div>
+    </div>
+  </div>
+</div>

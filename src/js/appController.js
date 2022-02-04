@@ -34,32 +34,50 @@ define(['knockout', 'ojs/ojcontext', 'ojs/ojmodule-element-utils', 'ojs/ojknocko
       this.mdScreen = ResponsiveKnockoutUtils.createMediaQueryObservable(mdQuery);
 
       let navData = [
-        { path: '', redirect: 'dashboard' },
-        { path: 'home', detail: { label: 'Home', iconClass: 'oj-ux-ico-bar-chart' } },
-        { path: 'about', detail: { label: 'About Us', iconClass: 'oj-ux-ico-fire' } },
-        { path: 'focus', detail: { label: 'Our Focus Area', iconClass: 'oj-ux-ico-contact-group' } },
-        { path: 'contact', detail: { label: 'Contact Us', iconClass: 'oj-ux-ico-information-s' } }
+        { path: '', redirect: 'home' },
+        { path: 'home', detail: { label: 'Home', iconClass: '' } },
+        { path: 'about', detail: { label: 'About Us', iconClass: '' } },
+        { path: 'focus', detail: { label: 'Our Focus Areas', iconClass: '' } },
+        { path: 'contact', detail: { label: 'Contact Us', iconClass: '' } },
+        { path: 'joinus', detail: { label: 'Join Us', iconClass: '' } },
+        { path: 'healthCampaign', detail: { label: 'Health Campaign', iconClass: '' } }
+      ];
+      let navData1 = [
+        { path: 'home', detail: { label: 'Home', iconClass: '' } },
+        { path: 'about', detail: { label: 'About Us', iconClass: '' } },
+        { path: 'focus', detail: { label: 'Our Focus Areas', iconClass: '' } },
+        { path: 'contact', detail: { label: 'Contact Us', iconClass: '' } },
+        { path: 'healthCampaign', detail: { label: 'Health Campaign', iconClass: '' } }
+      ];
+      let navData2 = [
+        { path: 'home', detail: { label: 'Home', iconClass: '' } },
+        { path: 'about', detail: { label: 'About Us', iconClass: '' } },
+        { path: 'focus', detail: { label: 'Our Focus Areas', iconClass: '' } },
+        { path: 'contact', detail: { label: 'Contact Us', iconClass: '' } },
+        { path: 'joinus', detail: { label: 'Join Us', iconClass: '' } },
+        { path: 'healthCampaign', detail: { label: 'Health Campaign', iconClass: '' } }
       ];
 
       // Router setup
-      let router = new CoreRouter(navData, {
+      this.router = new CoreRouter(navData, {
         urlAdapter: new UrlParamAdapter()
       });
-      router.sync();
+      this.router.sync();
 
-      this.moduleAdapter = new ModuleRouterAdapter(router);
+      this.moduleAdapter = new ModuleRouterAdapter(this.router);
 
-      this.selection = new KnockoutRouterAdapter(router);
+      this.selection = new KnockoutRouterAdapter(this.router);
 
       // Setup the navDataProvider with the routes, excluding the first redirected
       // route.
-      this.navDataProvider = new ArrayDataProvider(navData.slice(1), {keyAttributes: "path"});
+      this.navDataProvider = new ArrayDataProvider(navData1, {keyAttributes: "path"});
+      this.navDrawer = new ArrayDataProvider(navData2, {keyAttributes: "path"});
 
       // Drawer
       // Close offcanvas on medium and larger screens
       this.mdScreen.subscribe(() => {OffcanvasUtils.close(this.drawerParams);});
       this.drawerParams = {
-        displayMode: 'push',
+        displayMode: 'overlay',
         selector: '#navDrawer',
         content: '#pageContent'
       };
@@ -68,6 +86,9 @@ define(['knockout', 'ojs/ojcontext', 'ojs/ojmodule-element-utils', 'ojs/ojknocko
         this.navDrawerOn = true;
         return OffcanvasUtils.toggle(this.drawerParams);
       }
+      this.routeToPage = (_path) => {
+        this.router.go({ path: _path });
+      };
 
       // Header
       // Application Name used in Branding Area

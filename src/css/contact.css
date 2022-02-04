@@ -1,0 +1,38 @@
+.message__icon {
+    content: url(images/message_icon.svg);
+}
+.web__icon {
+    content: url(images/web_icon.svg);
+}
+.call__icon {
+    content: url(images/call_icon.svg);
+}
+.city__image{
+    background-image: url(images/charminar.png) ;
+    background-repeat: no-repeat;
+    background-size: contain; 
+    height: 438px;
+    background-position: center;
+}
+.contact__send__btn > button.oj-button-button{
+    border-radius: 1.32rem;
+    height: 45px;
+    background: #1c92d2;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(-264deg, rgba(6, 155, 187, 1) 0%, rgba(0, 81, 149, 1) 100%);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(-264deg, rgba(6, 155, 187, 1) 0%, rgba(0, 81, 149, 1) 100%); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+.contact__fs-lh-16-28 {
+    font-size: 16px; 
+    line-height: 28px;
+}
+@media screen and (min-width: 1024px) {
+  .contact__send__btn > button.oj-button-button{
+    width: 125px;
+  }
+}
+/* Medium and large Screens */
+@media screen and (max-width: 599.9px) {
+   .city__image {
+    height: 300px;
+   }
+}

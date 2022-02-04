@@ -1,0 +1,99 @@
+
+/* for large desktops */
+@media (min-width: 64em){
+    .wrapper .content{
+        width: 500px;
+        padding: 15px;
+        position: absolute;
+        bottom: -80px;
+        left: 24px;   
+        -webkit-box-align: center;
+        align-items: center;
+    }
+
+}
+@media (min-width:600px) and (max-width:800px) {
+    .oj-navigationlist-horizontal:not(.oj-navigationlist-icon-only) .oj-navigationlist-item {
+        margin-inline-end: 15px;
+    }
+}
+@media (min-width: 768px) and (max-width:1023px) {
+    .img-bg-1 {
+        display: none;
+    }
+}
+@media (max-width:375px) {
+    .about__about-doc {
+        background-size: contain;
+        height: 115px;
+    }
+}
+@media (min-width:996px) and (max-width:1240px) {
+    .header .img-bg {
+        position: absolute;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-image: url('../css/images/circle-bg.png');
+        top: 170px;
+        width: 400px;
+        height: 400px;
+        right: 0;
+        z-index: 1;
+    }
+    .header div .header-content .founders-block{
+        display: block;
+        position: absolute;
+        right: 33px;
+        bottom: -250px;
+        background-repeat: no-repeat;
+        height: 508px;
+        background-size: 100%;
+        width: 324px;
+        z-index: 2;
+}
+.header div .header-content .video-block {
+    width: 95%;
+    height: 350px;
+    z-index: 2;
+    position: relative;
+    background-size: cover;
+}
+.header div .header-content {
+    margin-bottom: 150px;
+}
+.header{
+    padding: 0 40px;
+  }
+} 
+
+@media (min-width: 1240px){
+    .header .img-bg{
+      position: absolute;     
+      background-size:cover;
+      background-image:  url('../css/images/circle-bg.png');
+      top: 119px;
+    width: 650px;
+    height: 650px;
+    right: 20px;
+    z-index: 1;
+    }
+    .header div .header-content .founders-block{
+        display: block;
+        position: absolute;
+        right: 80px;
+        bottom: -250px;
+        height: 530px;
+        background-size: cover;
+        width: 500px;
+        z-index: 2;
+    }
+    .content-wrapper .content1{
+        width: 540px;
+        padding: 15px;
+        position: absolute;
+        bottom: -150px;
+        left: 24px;   
+        -webkit-box-align: center;
+        align-items: center;
+      }
+  }
