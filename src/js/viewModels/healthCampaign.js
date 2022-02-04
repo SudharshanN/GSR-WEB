@@ -8,47 +8,71 @@
 /*
  * Your about ViewModel code goes here
  */
-define(['../accUtils', 'knockout', 'ojs/ojknockout', 'ojs/ojformlayout', 'ojs/ojinputtext', 'ojs/ojlabel'],
- function(accUtils, ko) {
-    function AboutViewModel() {
-      this.name = ko.observable('');
-      this.age=ko.observable('')
-      this.email = ko.observable('');
-      this.mobile = ko.observable(''),
-      this.gender = ko.observable('');
-      this.familyMembers = ko.observable('');
-      this.address = ko.observable('');
-      this.symptoms = ko.observable('');
-      this.connected = () => {
-        window.scrollTo(0,0);
-        accUtils.announce('About page loaded.', 'assertive');
-        document.title = "About";
-        // Implement further logic if needed
+define([
+  "../accUtils",
+  "knockout",
+  "axios",
+  "ojs/ojknockout",
+  "ojs/ojformlayout",
+  "ojs/ojinputtext",
+  "ojs/ojlabel",
+], function (accUtils, ko, axios) {
+  function AboutViewModel() {
+    this.name = ko.observable("");
+    this.age = ko.observable("");
+    this.email = ko.observable("");
+    (this.mobile = ko.observable("")), (this.gender = ko.observable(""));
+    this.familyMembers = ko.observable("");
+    this.address = ko.observable("");
+    this.symptoms = ko.observable("");
+    this.connected = () => {
+      window.scrollTo(0, 0);
+      accUtils.announce("About page loaded.", "assertive");
+      document.title = "About";
+      // Implement further logic if needed
+    };
+    this.submitForm = () => {
+      const url =
+        "https://aluminiapi.azurewebsites.net/api/MedicalCamp/Register";
+      const body = {
+        Name: this.name(),
+        Age: this.age(),
+        Gender: this.gender(),
+        Phone: this.mobile(),
+        Email: this.email(),
+        NoOfFamilyMembers: this.NoOfFamilyMembers(),
+        Adress: this.address(),
+        Symptoms: this.symptoms(),
       };
-      this.submitForm = () => {
-        console.log('hi');
-      }
-      /**
-       * Optional ViewModel method invoked after the View is disconnected from the DOM.
-       */
-      this.disconnected = () => {
-        // Implement if needed
-      };
-
-      /**
-       * Optional ViewModel method invoked after transition to the new View is complete.
-       * That includes any possible animation between the old and the new View.
-       */
-      this.transitionCompleted = () => {
-        // Implement if needed
-      };
-    }
-
-    /*
-     * Returns an instance of the ViewModel providing one instance of the ViewModel. If needed,
-     * return a constructor for the ViewModel so that the ViewModel is constructed
-     * each time the view is displayed.
+      axios
+        .post(url, JSON.stringify(body))
+        .then((resp) => {
+          console.log(resp);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    };
+    /**
+     * Optional ViewModel method invoked after the View is disconnected from the DOM.
      */
-    return AboutViewModel;
+    this.disconnected = () => {
+      // Implement if needed
+    };
+
+    /**
+     * Optional ViewModel method invoked after transition to the new View is complete.
+     * That includes any possible animation between the old and the new View.
+     */
+    this.transitionCompleted = () => {
+      // Implement if needed
+    };
   }
-);
+
+  /*
+   * Returns an instance of the ViewModel providing one instance of the ViewModel. If needed,
+   * return a constructor for the ViewModel so that the ViewModel is constructed
+   * each time the view is displayed.
+   */
+  return AboutViewModel;
+});

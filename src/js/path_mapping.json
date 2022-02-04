@@ -27,7 +27,17 @@
         "cdnPath": "knockout/knockout-3.5.1"
       }
     },
-
+    "axios": {
+      "cwd": "node_modules/axios/dist",
+      "debug": {
+        "src":  ["**"],
+        "path": "libs/axios/axios.js"
+      },
+      "release": {
+        "src": ["**"],
+        "path": "libs/axios/axios.min.js"
+      }
+    },
     "jquery": {
       "cdn": "3rdparty",
       "cwd": "node_modules/jquery/dist",
