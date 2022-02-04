@@ -15,13 +15,16 @@
         </oj-input-text>
         <oj-input-text id="age" placeholder='Please enter age' value='{{age}}' label-hint="Age" required="true">
         </oj-input-text>
-        <oj-input-text id="email" placeholder='Please enter email' value='{{email}}' label-hint="Email" required="true">
+        <oj-input-text id="email" placeholder='Please enter email' value='{{email}}' label-hint="Email">
         </oj-input-text>
         <oj-input-text id="mobile" placeholder='Please enter mobile number' value='{{mobile}}'
           label-hint="Mobile Number" required="true">
         </oj-input-text>
-        <oj-input-text id="gender" placeholder='Please enter gender' value='{{gender}}' label-hint="Gender"
+        
+          <oj-select-single data="[[genderDP]]" placeholder='Please select gender' id="gender"
+          value='{{gender}}' label-hint="Gender"
           required="true">
+              </oj-select-single>
         </oj-input-text>
         <oj-input-text id="familyMembers" placeholder='Please enter no of family members' value='{{familyMembers}}'
           label-hint="No Of Family Members" required="true">

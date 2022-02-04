@@ -12,11 +12,13 @@ define([
   "../accUtils",
   "knockout",
   "axios",
+  "ojs/ojarraydataprovider",
   "ojs/ojknockout",
   "ojs/ojformlayout",
   "ojs/ojinputtext",
   "ojs/ojlabel",
-], function (accUtils, ko, axios) {
+  "ojs/ojselectsingle"
+], function (accUtils, ko, axios, ArrayDataProvider) {
   function AboutViewModel() {
     this.name = ko.observable("");
     this.age = ko.observable("");
@@ -25,6 +27,14 @@ define([
     this.familyMembers = ko.observable("");
     this.address = ko.observable("");
     this.symptoms = ko.observable("");
+    const genders = [
+      { value: "male", label: "Male" },
+      { value: "female", label: "Female" },
+      { value: "others", label: "Others" },
+    ];
+    this.genderDP = new ArrayDataProvider(genders, {
+      keyAttributes: "value",
+    });
     this.connected = () => {
       window.scrollTo(0, 0);
       accUtils.announce("About page loaded.", "assertive");
@@ -40,12 +50,15 @@ define([
         Gender: this.gender(),
         Phone: this.mobile(),
         Email: this.email(),
-        NoOfFamilyMembers: this.NoOfFamilyMembers(),
+        NoOfFamilyMembers: this.familyMembers(),
         Adress: this.address(),
         Symptoms: this.symptoms(),
       };
+      const headers = {
+        "Content-Type": "application/json"
+      }
       axios
-        .post(url, JSON.stringify(body))
+        .post(url, JSON.stringify(body),headers)
         .then((resp) => {
           console.log(resp);
         })
