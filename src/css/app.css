@@ -69,7 +69,7 @@ a.oj-navigationlist-item-content > .oj-navigationlist-item-label {
   background: linear-gradient(-264deg, rgba(6, 155, 187, 1) 0%, rgba(0, 81, 149, 1) 100%); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 .width-full{ 
-  width: 70%;
+  width: 500px;
 }
 .join__us > button.oj-button-button {
   border-radius: 1.32rem;
