@@ -94,9 +94,9 @@
             </div>
             <div class="oj-flex-bar-middle">
               <span role="img" class="oj-icon gsr-icon" title="GSR Logo" alt="GSR Logo" on-click="[[() => routeToPage('home')]]"></span>
-              <div class="oj-lg-padding-10x-horizontal oj-md-hide">
+              <div class="oj-lg-padding-10x-horizontal oj-md-only-hide oj-sm-only-hide">
                 <div role="navigation" class="oj-web-applayout-navbar oj-sm-padding-10x-horizontal">
-                  <oj-navigation-list id="navTabBar" class="oj-md-hide oj-md-condense"
+                  <oj-navigation-list id="navTabBar" class=" oj-md-condense"
                                       data="[[navDataProvider]]"
                                       edge="top"
                                       item.renderer="[[KnockoutTemplateUtils.getRenderer('navTemplate', true)]]"
@@ -127,7 +127,7 @@
             <div class="oj-flex-bar-middle">
               <div>
                 <div role="navigation" class="oj-web-applayout-navbar">
-                  <oj-navigation-list id="navTabBar" class="oj-md-hide oj-md-condense"
+                  <oj-navigation-list id="navTabBar" class="oj-md-only-hide oj-sm-only-hide oj-md-condense"
                                       data="[[navDataProvider]]"
                                       edge="top"
                                       item.renderer="[[KnockoutTemplateUtils.getRenderer('navTemplate', true)]]"
