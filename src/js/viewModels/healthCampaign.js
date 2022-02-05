@@ -100,8 +100,7 @@ define([
       axios
         .post(url, body, JSON.stringify(headers))
         .then((resp) => {
-          console.log(resp);
-          if (!resp.data.isError) {
+          if (!resp.data.IsError) {
             window.open(resp.data.Data.PdfFile, "_blank");
             this.name("");
             this.age("");
@@ -111,7 +110,6 @@ define([
             this.familyMembers("");
             this.address("");
             this.symptoms("");
-            this.openDialog('error');
           } else {
             this.openDialog('error');
           }
@@ -157,8 +155,7 @@ define([
     axios
       .post(url, body, JSON.stringify(headers))
       .then((resp) => {
-        console.log(resp);
-        if (!resp.data.isError) {
+        if (!resp.data.IsError) {
           this.regestrationId('');
           this.backImage('');
           this.frontImage('');
