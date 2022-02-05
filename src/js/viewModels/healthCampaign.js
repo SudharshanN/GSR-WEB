@@ -36,9 +36,9 @@ define([
     this.symptoms = ko.observable("");
 
     this.rawName = ko.observable("");
-    this.rawAge = ko.observable();
+    this.rawAge = ko.observable("");
     this.rawMobile = ko.observable("");
-    this.rawFamilyMembers = ko.observable();
+    this.rawFamilyMembers = ko.observable("");
     this.rawAddress = ko.observable("");
     this.rawSymptoms = ko.observable("");
 
@@ -199,9 +199,9 @@ define([
               this.address("");
               this.symptoms("");
               this.rawName("");
-              this.rawAge();
+              this.rawAge("");
               this.rawMobile("");
-              this.rawFamilyMembers();
+              this.rawFamilyMembers("");
               this.rawAddress("");
               this.rawSymptoms("");
               this.closeDialog("loading-popup");
