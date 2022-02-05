@@ -22,14 +22,15 @@ define([
   "ojs/ojmessages",
   "ojs/ojpopup",
   "ojs/ojnavigationlist",
-  "ojs/ojdialog"
+  "ojs/ojdialog",
+  "ojs/ojinputnumber"
 ], function (accUtils, ko, axios, $, ArrayDataProvider) {
   function AboutViewModel() {
     this.name = ko.observable("");
-    this.age = ko.observable("");
+    this.age = ko.observable();
     this.email = ko.observable("");
     (this.mobile = ko.observable("")), (this.gender = ko.observable(""));
-    this.familyMembers = ko.observable("");
+    this.familyMembers = ko.observable();
     this.address = ko.observable("");
     this.symptoms = ko.observable("");
     this.regestrationId = ko.observable('');
@@ -79,6 +80,7 @@ define([
       this.context = this.canvas.getContext('2d');
     };
     this.submitForm = () => {
+      this.openDialog('loading-popup');
       const url =
         "https://aluminiapi.azurewebsites.net/api/MedicalCamp/Register";
       const body = {
@@ -113,9 +115,11 @@ define([
           } else {
             this.openDialog('error');
           }
+          this.closeDialog('loading-popup');
         })
         .catch((err) => {
           this.openDialog('error');
+          this.closeDialog('loading-popup');
         });
     };
     this.openDialog = (id) => {
@@ -140,6 +144,7 @@ define([
       this.cameraGetVideo();
     }
     this.uploadDocs = () => {
+      this.openDialog('loading-popup');
       const url =
       "https://aluminiapi.azurewebsites.net/api/MedicalCamp/UploadPrescription";
     const body = {
@@ -162,9 +167,11 @@ define([
         } else {
           this.openDialog('error');
         }
+        this.closeDialog('loading-popup');
       })
       .catch((err) => {
         this.openDialog('error');
+        this.closeDialog('loading-popup');
       });
     }
     this.cameraGetVideo = function () {
