@@ -146,7 +146,7 @@ define([
       "https://aluminiapi.azurewebsites.net/api/MedicalCamp/UploadPrescription";
     const body = {
       Id: 0,
-      RegestrationID : Number(this.regestrationId()),
+      RegistrationID : Number(this.regestrationId()),
       FrontImage: this.frontImage().replace('data:image/jpeg;base64,',''),
       BackImage: this.backImage().replace('data:image/jpeg;base64,',''),
       CreatedDate: `${new Date()}`,
