@@ -100,8 +100,7 @@ define([
       axios
         .post(url, body, JSON.stringify(headers))
         .then((resp) => {
-          console.log(resp);
-          if (!resp.IsError) {
+          if (!resp.data.IsError) {
             window.open(resp.data.Data.PdfFile, "_blank");
             this.name("");
             this.age("");
