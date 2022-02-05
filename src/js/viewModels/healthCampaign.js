@@ -12,13 +12,17 @@ define([
   "../accUtils",
   "knockout",
   "axios",
+  "jquery",
   "ojs/ojarraydataprovider",
   "ojs/ojknockout",
   "ojs/ojformlayout",
   "ojs/ojinputtext",
   "ojs/ojlabel",
-  "ojs/ojselectsingle"
-], function (accUtils, ko, axios, ArrayDataProvider) {
+  "ojs/ojselectsingle",
+  "ojs/ojmessages",
+  "ojs/ojpopup",
+  "ojs/ojnavigationlist",
+], function (accUtils, ko, axios, $, ArrayDataProvider) {
   function AboutViewModel() {
     this.name = ko.observable("");
     this.age = ko.observable("");
@@ -27,6 +31,7 @@ define([
     this.familyMembers = ko.observable("");
     this.address = ko.observable("");
     this.symptoms = ko.observable("");
+    this.regestrationId = ko.observable('');
     const genders = [
       { value: "male", label: "Male" },
       { value: "female", label: "Female" },
@@ -35,16 +40,41 @@ define([
     this.genderDP = new ArrayDataProvider(genders, {
       keyAttributes: "value",
     });
+    this.messages = [
+      {
+        severity: "error",
+        summary: "Error",
+        detail: "Something went wrong, please try again",
+        closeAffordance: "none",
+        timestamp: new Date().getTime(),
+      },
+    ];
+    this.messagesDataprovider = new ArrayDataProvider(this.messages);
+
+    const data = [
+      { name: "Regestration", id: "regestration", icons: "oj-ux-ico-add-edit-page" },
+      {
+        name: "Upload Prescription",
+        id: "prescription",
+        icons: "oj-ux-ico-upload"
+      }
+    ];
+    this.selectedItem = ko.observable("regestration");
+    this.display = ko.observable("all");
+    this.edge = ko.observable("top");
+    this.dataProvider = new ArrayDataProvider(data, { keyAttributes: "id" });
+
     this.connected = () => {
       window.scrollTo(0, 0);
-      accUtils.announce("About page loaded.", "assertive");
-      document.title = "About";
-      // Implement further logic if needed
+      accUtils.announce("Health Campiagn page loaded.", "assertive");
+      document.title = "Health Campiagn";
+      
     };
     this.submitForm = () => {
       const url =
         "https://aluminiapi.azurewebsites.net/api/MedicalCamp/Register";
       const body = {
+        Id: 0,
         Name: this.name(),
         Age: this.age(),
         Gender: this.gender(),
@@ -53,19 +83,50 @@ define([
         NoOfFamilyMembers: this.familyMembers(),
         Adress: this.address(),
         Symptoms: this.symptoms(),
+        CreatedDate: `${new Date()}`,
       };
       const headers = {
-        "Content-Type": "application/json"
-      }
+        "Content-Type": "application/json",
+      };
+      // $.post(url, JSON.stringify(body)).done(function (data) {
+      //   alert("Data Loaded: " + data);
+      // });
       axios
-        .post(url, JSON.stringify(body),headers)
+        .post(url, body, JSON.stringify(headers))
         .then((resp) => {
           console.log(resp);
+          if (!resp.data.isError) {
+            window.open(resp.data.Data.PdfFile, "_blank");
+            this.name("");
+            this.age("");
+            this.email("");
+            this.mobile("");
+            this.gender("");
+            this.familyMembers("");
+            this.address("");
+            this.symptoms("");
+          } else {
+            this.openDialog();
+          }
         })
         .catch((err) => {
-          console.log(err);
+          this.openDialog();
         });
     };
+    this.openDialog = () => {
+      const dialog = document.querySelector(`#error`);
+      dialog?.open?.();
+    };
+    this.closeDialog = () => {
+      const dialog = document.querySelector(`#error`);
+      dialog?.close?.();
+    };
+    this.cancelListener = () => {
+      this.closeDialog();
+    };
+    this.selectFiles = (event) => {
+      
+    }
     /**
      * Optional ViewModel method invoked after the View is disconnected from the DOM.
      */

@@ -137,3 +137,17 @@ a.oj-navigationlist-item-content > .oj-navigationlist-item-label {
 
 }
 }
+.demo-popup-body {
+  display: flex; 
+  flex-direction: column;
+  align-items: stretch;
+} 
+.demo-popup-header {
+  align-self: flex-end;
+}
+
+#my_camera{
+  width: 320px;
+  height: 240px;
+  border: 1px solid black;
+}
