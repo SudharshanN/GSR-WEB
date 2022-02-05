@@ -146,8 +146,15 @@ a.oj-navigationlist-item-content > .oj-navigationlist-item-label {
   align-self: flex-end;
 }
 
-#my_camera{
-  width: 320px;
-  height: 240px;
-  border: 1px solid black;
+.full-width-height {
+  min-width: 70%;
+  min-height: 70%;
+  border-radius: 10px;
+}
+@supports (-webkit-touch-callout: none) {
+  /* CSS specific to iOS devices */
+  .full-width-height {
+    min-height: 70%;;
+    height: 70%;;
+  }
 }

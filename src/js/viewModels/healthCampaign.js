@@ -22,6 +22,7 @@ define([
   "ojs/ojmessages",
   "ojs/ojpopup",
   "ojs/ojnavigationlist",
+  "ojs/ojdialog"
 ], function (accUtils, ko, axios, $, ArrayDataProvider) {
   function AboutViewModel() {
     this.name = ko.observable("");
@@ -64,11 +65,18 @@ define([
     this.edge = ko.observable("top");
     this.dataProvider = new ArrayDataProvider(data, { keyAttributes: "id" });
 
+
+    this.player ;
+    this.canvas ;
+    this.context ;
+
     this.connected = () => {
       window.scrollTo(0, 0);
       accUtils.announce("Health Campiagn page loaded.", "assertive");
       document.title = "Health Campiagn";
-      
+      this.player = document.getElementById('player');
+      this.canvas = document.getElementById('canvas');
+      this.context = this.canvas.getContext('2d');
     };
     this.submitForm = () => {
       const url =
@@ -88,9 +96,7 @@ define([
       const headers = {
         "Content-Type": "application/json",
       };
-      // $.post(url, JSON.stringify(body)).done(function (data) {
-      //   alert("Data Loaded: " + data);
-      // });
+     
       axios
         .post(url, body, JSON.stringify(headers))
         .then((resp) => {
@@ -106,26 +112,97 @@ define([
             this.address("");
             this.symptoms("");
           } else {
-            this.openDialog();
+            this.openDialog('error');
           }
         })
         .catch((err) => {
-          this.openDialog();
+          this.openDialog('error');
         });
     };
-    this.openDialog = () => {
-      const dialog = document.querySelector(`#error`);
+    this.openDialog = (id) => {
+      const dialog = document.querySelector(`#${id}`);
       dialog?.open?.();
     };
-    this.closeDialog = () => {
-      const dialog = document.querySelector(`#error`);
+    this.closeDialog = (id) => {
+      const dialog = document.querySelector(`#${id}`);
       dialog?.close?.();
     };
     this.cancelListener = () => {
       this.closeDialog();
     };
-    this.selectFiles = (event) => {
-      
+    this.uploadFront = (event) => {
+      this.action('front');
+      this.openDialog('image');
+      this.cameraGetVideo();
+    }
+    this.uploadBack = (event) => {
+      this.action('back');
+      this.openDialog('image');
+      this.cameraGetVideo();
+    }
+    this.uploadDocs = () => {
+      const url =
+      "https://aluminiapi.azurewebsites.net/api/MedicalCamp/UploadPrescription";
+    const body = {
+      Id: 0,
+      RegestrationID : Number(this.regestrationId()),
+      FrontImage: this.frontImage().replace('data:image/jpeg;base64,',''),
+      BackImage: this.backImage().replace('data:image/jpeg;base64,',''),
+      CreatedDate: `${new Date()}`,
+    };
+    const headers = {
+      "Content-Type": "application/json",
+    };
+    axios
+      .post(url, body, JSON.stringify(headers))
+      .then((resp) => {
+        console.log(resp);
+        if (!resp.data.isError) {
+          this.regestrationId('');
+          // this.selectedItem("regestration");
+          this.backImage('');
+          this.frontImage('');
+        } else {
+          this.openDialog('error');
+        }
+      })
+      .catch((err) => {
+        this.openDialog('error');
+      });
+    }
+    this.cameraGetVideo = function () {
+      this.player = document.getElementById('player');
+      this.canvas = document.getElementById('canvas');
+      this.context = this.canvas.getContext('2d');
+
+      const constraints = {
+        video: true,
+      };
+      navigator.mediaDevices.getUserMedia(constraints)
+        .then((stream) => {
+          this.player.srcObject = stream;
+        });
+    }
+    this.cameraGetImage = () => {
+      this.context.drawImage(this.player, 0, 0, this.canvas.width, this.canvas.height);
+      this.player.srcObject.getVideoTracks().forEach(track => track.stop());
+      this.cameraGetVideo();
+    }
+    this.closeCam = () => {
+      this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+      this.player.srcObject.getVideoTracks().forEach(track => track.stop());
+    }
+    this.frontImage = ko.observable('');
+    this.backImage = ko.observable('');
+    this.action = ko.observable('front');
+    this.cameraSaveImage = () => {
+      var dt = this.canvas.toDataURL('image/jpeg');
+      if(this.action() === 'front'){
+        this.frontImage(dt);
+      } else {
+        this.backImage(dt);
+      }
+      this.closeDialog('image');
     }
     /**
      * Optional ViewModel method invoked after the View is disconnected from the DOM.
