@@ -8,7 +8,7 @@
     "axios": "^0.25.0"
   },
   "scripts": {
-    "build": "npx ojet build web --release"
+    "build": "npx ojet build web"
   },
   "devDependencies": {
     "fs-extra": "^8.1.0",

@@ -159,7 +159,6 @@ define([
         console.log(resp);
         if (!resp.data.isError) {
           this.regestrationId('');
-          // this.selectedItem("regestration");
           this.backImage('');
           this.frontImage('');
         } else {
