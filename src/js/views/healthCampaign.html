@@ -54,24 +54,25 @@
         </oj-button>
       </div>
     </div>
-    <div>
-      <oj-popup id="error" auto-dismiss="none" modality="modal" position.my.horizontal="center"
-        position.my.vertical="center" position.at.horizontal="center" position.at.vertical="center" position.of="window"
-        tail="none" style="width: 50%;">
-        <div class="demo-popup-body">
-          <div class="demo-popup-header">
-            <oj-button id="btnCancel" class="oj-button-sm" display="icons" on-oj-action="[[cancelListener]]">
-              <span slot='startIcon' class="oj-ux-ico-close"></span>
-            </oj-button>
-          </div>
-          <div class="demo-popup-content">
-            <oj-messages messages="[[messagesDataprovider]]" display-options.category="none">
-            </oj-messages>
-          </div>
-        </div>
-      </oj-popup>
-    </div>
+    
   </oj-bind-if>
+  <div>
+    <oj-popup id="error" auto-dismiss="none" modality="modal" position.my.horizontal="center"
+      position.my.vertical="center" position.at.horizontal="center" position.at.vertical="center" position.of="window"
+      tail="none" style="width: 50%;">
+      <div class="demo-popup-body">
+        <div class="demo-popup-header">
+          <oj-button id="btnCancel" class="oj-button-sm" display="icons" on-oj-action="[[cancelListener]]">
+            <span slot='startIcon' class="oj-ux-ico-close"></span>
+          </oj-button>
+        </div>
+        <div class="demo-popup-content">
+          <oj-messages messages="[[messagesDataprovider]]" display-options.category="none">
+          </oj-messages>
+        </div>
+      </div>
+    </oj-popup>
+  </div>
   <oj-bind-if test="[[selectedItem() === 'prescription']]">
     <div class="oj-sm-padding-5x-horizontal oj-sm-padding-10x-vertical oj-md-padding-3x-horizontal">
       <oj-form-layout id="myform" label-edge="top" max-columns="1" direction="row" colspan-wrap="wrap"
