@@ -45,9 +45,10 @@ define([
     this.regestrationId = ko.observable("");
     this.rawRegestrationId = ko.observable("");
     const genders = [
-      { value: "male", label: "Male" },
-      { value: "female", label: "Female" },
-      { value: "others", label: "Others" },
+      { value: "", label: "Select Gender" },
+      { value: "Male", label: "Male" },
+      { value: "Female", label: "Female" },
+      { value: "Others", label: "Others" },
     ];
     this.genderDP = new ArrayDataProvider(genders, {
       keyAttributes: "value",
@@ -197,6 +198,12 @@ define([
               this.familyMembers("");
               this.address("");
               this.symptoms("");
+              this.rawName("");
+              this.rawAge();
+              this.rawMobile("");
+              this.rawFamilyMembers();
+              this.rawAddress("");
+              this.rawSymptoms("");
               this.closeDialog("loading-popup");
             } else {
               this.closeDialog("loading-popup");
@@ -293,6 +300,7 @@ define([
               this.regestrationId("");
               this.backImage("");
               this.frontImage("");
+              this.rawRegestrationId("");
               this.closeDialog("loading-popup");
             } else {
               this.closeDialog("loading-popup");
