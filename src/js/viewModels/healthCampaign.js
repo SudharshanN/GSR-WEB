@@ -296,7 +296,7 @@ define([
         axios
           .post(url, body, JSON.stringify(headers))
           .then((resp) => {
-            if (resp.data.IsError) {
+            if (!resp.data.IsError) {
               this.regestrationId("");
               this.backImage("");
               this.frontImage("");
