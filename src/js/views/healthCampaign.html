@@ -8,37 +8,145 @@
     <h1 class="linear__gradient oj-typography-heading-2xl oj-lg-margin-1x-bottom">Medical Campaign, Kothagudem</h1>
     <h6 class="linear__gradient oj-lg-margin-6x-bottom">Saturday, 12th February 2022 </h6>
   </div>
-    <div class="oj-lg-padding-5x-horizontal oj-md-padding-3x-horizontal oj-sm-padding-3x-horizontal" >
+
+  <oj-tab-bar selection="{{selectedItem}}" data="[[dataProvider]]" edge="[[edge]]" display="[[display]]">
+    <template slot="itemTemplate" data-oj-as="item">
+      <li :class="[[{'oj-disabled' : item.data.disabled === 'true'}]]">
+        <a href="#">
+          <span :class="[['oj-tabbar-item-icon ' + item.data.icons]]"></span>
+          <oj-bind-text value="[[item.data.name]]"> </oj-bind-text>
+        </a>
+      </li>
+    </template>
+  </oj-tab-bar>
+  <oj-bind-if test="[[selectedItem() === 'regestration']]">
+    <div class="oj-sm-padding-5x-horizontal oj-sm-padding-10x-vertical oj-md-padding-3x-horizontal">
       <oj-form-layout id="myform" label-edge="top" max-columns="2" direction="row" colspan-wrap="wrap"
         user-assistance-density="efficient">
-        <oj-input-text id="name" placeholder='Please enter name' value='{{name}}' label-hint="Name" required="true">
+        <oj-input-text id="name" placeholder='Please enter name' value='{{name}}' label-hint="Name" required="true"
+          length.max="255" length.count-by="codeUnit">
         </oj-input-text>
-        <oj-input-text id="age" placeholder='Please enter age' value='{{age}}' label-hint="Age" required="true">
+        <oj-input-text id="age" placeholder='Please enter age' value='{{age}}' label-hint="Age" required="true"
+          length.max="3" length.count-by="codeUnit">
         </oj-input-text>
-        <oj-input-text id="email" placeholder='Please enter email' value='{{email}}' label-hint="Email">
+        <oj-input-text id="email" placeholder='Please enter email' value='{{email}}' label-hint="Email" length.max="255"
+          length.count-by="codeUnit">
         </oj-input-text>
         <oj-input-text id="mobile" placeholder='Please enter mobile number' value='{{mobile}}'
-          label-hint="Mobile Number" required="true">
+          label-hint="Mobile Number" required="true" length.max="10" length.count-by="codeUnit">
         </oj-input-text>
-        
-          <oj-select-single data="[[genderDP]]" placeholder='Please select gender' id="gender"
-          value='{{gender}}' label-hint="Gender"
-          required="true">
-              </oj-select-single>
+
+        <oj-select-single data="[[genderDP]]" placeholder='Please select gender' id="gender" value='{{gender}}'
+          label-hint="Gender" required="true">
+        </oj-select-single>
         </oj-input-text>
         <oj-input-text id="familyMembers" placeholder='Please enter no of family members' value='{{familyMembers}}'
-          label-hint="No Of Family Members" required="true">
+          label-hint="No Of Family Members" required="true" length.max="3" length.count-by="codeUnit">
         </oj-input-text>
         <oj-text-area id="address" label-hint="Address" rows="5" placeholder='Enter Address' value='{{address}}'
-          required="true"></oj-text-area>
-          <oj-text-area id="symptoms" label-hint="Symptoms" rows="5" placeholder='Enter Symptoms' value='{{symptoms}}'
-          required="true"></oj-text-area>
+          required="true" length.max="500" length.count-by="codeUnit"></oj-text-area>
+        <oj-text-area id="symptoms" label-hint="Symptoms" rows="5" placeholder='Enter Symptoms' value='{{symptoms}}'
+          required="true" length.max="500" length.count-by="codeUnit"></oj-text-area>
       </oj-form-layout>
       <div class="oj-flex oj-sm-flex-items-initial oj-sm-justify-content-space-around">
         <oj-button id="chroming_button5" chroming="callToAction" class="width-full" on-oj-action="[[submitForm]]">
           Submit
-      </oj-button> 
+        </oj-button>
+      </div>
+    </div>
+    <div>
+      <oj-popup id="error" auto-dismiss="none" modality="modal" position.my.horizontal="center"
+        position.my.vertical="center" position.at.horizontal="center" position.at.vertical="center" position.of="window"
+        tail="none" style="width: 50%;">
+        <div class="demo-popup-body">
+          <div class="demo-popup-header">
+            <oj-button id="btnCancel" class="oj-button-sm" display="icons" on-oj-action="[[cancelListener]]">
+              <span slot='startIcon' class="oj-ux-ico-close"></span>
+            </oj-button>
+          </div>
+          <div class="demo-popup-content">
+            <oj-messages messages="[[messagesDataprovider]]" display-options.category="none">
+            </oj-messages>
+          </div>
+        </div>
+      </oj-popup>
+    </div>
+  </oj-bind-if>
+  <oj-bind-if test="[[selectedItem() === 'prescription']]">
+    <div class="oj-sm-padding-5x-horizontal oj-sm-padding-10x-vertical oj-md-padding-3x-horizontal">
+      <oj-form-layout id="myform" label-edge="top" max-columns="1" direction="row" colspan-wrap="wrap"
+        user-assistance-density="efficient">
+        <oj-input-text id="regestrationId" placeholder='Please enter regestration' value='{{regestrationId}}'
+          label-hint="Regestration Id" required="true" length.max="5" length.count-by="codeUnit">
+          <div slot="start" class="oj-text-field-start-end-icon" role="img">
+            <span>GSRMC</span>
+          </div>
+        </oj-input-text>
+        
+
+      </oj-form-layout>
+      <div class="oj-sm-padding-5x-bottom">
+        <div class="oj-flex oj-sm-align-items-center">
+          <div class="oj-flex-item">
+            <oj-button on-oj-action='[[uploadFront]]' chroming="callToAction">
+              <span slot='startIcon' class='oj-ux-ico-plus'></span>
+              Upload Front Page
+            </oj-button>
+          </div>
+          <div class="oj-flex-item">
+            <img :src="[[frontImage]]" />
+          </div>
+        </div>
+
+      </div>
+      <div>
+        <div class="oj-flex oj-sm-align-items-center">
+          <div class="oj-flex-item">
+            <oj-button on-oj-action='[[uploadBack]]' chroming="callToAction">
+              <span slot='startIcon' class='oj-ux-ico-plus'></span>
+              Upload Back Page
+            </oj-button>
+          </div>
+          <div class="oj-flex-item">
+            <img :src="[[backImage]]" />
+          </div>
+        </div>
+      </div>
+      <div class="oj-flex oj-sm-flex-items-initial oj-sm-justify-content-space-around oj-sm-padding-5x-top">
+        <oj-button id="chroming_button5" chroming="callToAction" class="width-full" on-oj-action="[[uploadDocs]]">
+          Upload
+        </oj-button>
       </div>
     </div>
 
+  </oj-bind-if>
+
+  <div>
+    <oj-dialog id="image" class="full-width-height" cancel-behavior="icon" on-oj-before-close="[[closeCam]]">
+      <div slot="body">
+        <oj-bind-if test="[['mediaDevices' in navigator]]">
+          <div class="oj-flex oj-sm-align-items-center">
+            <div class="oj-flex-item">
+              <video id="player" autoplay width="350" height="350"></video>
+            </div>
+            <div class="oj-flex-item">
+              <canvas id="canvas" width="350" height="265"></canvas>
+            </div>
+          </div>
+        </oj-bind-if>
+        <oj-bind-if test="[['mediaDevices' in navigator === false]]">
+          <b>Browser does not support mediaDevices</b>
+        </oj-bind-if>
+      </div>
+      <div slot="footer">
+        <oj-bind-if test="[['player' in self]]">
+          <oj-button on-oj-action="[[cameraGetImage]]">Take Picture</oj-button>
+        </oj-bind-if>
+        <oj-bind-if test="[['player' in self]]">
+          <oj-button on-oj-action="[[cameraSaveImage]]">Save Picture</oj-button>
+        </oj-bind-if>
+        <!-- <oj-button id="okButton"  on-oj-action="[[handleOKClose]]">OK</oj-button> -->
+      </div>
+    </oj-dialog>
+  </div>
 </div>

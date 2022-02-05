@@ -137,3 +137,24 @@ a.oj-navigationlist-item-content > .oj-navigationlist-item-label {
 
 }
 }
+.demo-popup-body {
+  display: flex; 
+  flex-direction: column;
+  align-items: stretch;
+} 
+.demo-popup-header {
+  align-self: flex-end;
+}
+
+.full-width-height {
+  min-width: 70%;
+  min-height: 70%;
+  border-radius: 10px;
+}
+@supports (-webkit-touch-callout: none) {
+  /* CSS specific to iOS devices */
+  .full-width-height {
+    min-height: 70%;;
+    height: 70%;;
+  }
+}
