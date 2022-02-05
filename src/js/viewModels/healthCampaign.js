@@ -111,6 +111,7 @@ define([
             this.familyMembers("");
             this.address("");
             this.symptoms("");
+            this.openDialog('error');
           } else {
             this.openDialog('error');
           }
@@ -128,7 +129,7 @@ define([
       dialog?.close?.();
     };
     this.cancelListener = () => {
-      this.closeDialog();
+      this.closeDialog('error');
     };
     this.uploadFront = (event) => {
       this.action('front');
@@ -175,7 +176,7 @@ define([
       this.context = this.canvas.getContext('2d');
 
       const constraints = {
-        video: true,
+        video: { facingMode: { exact: "environment" } },
       };
       navigator.mediaDevices.getUserMedia(constraints)
         .then((stream) => {
