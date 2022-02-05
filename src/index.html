@@ -114,6 +114,31 @@
           </div>
           
         </header>
+        <oj-popup id="loading-popup"
+                  auto-dismiss="none"
+                  modality="modal"
+                  position.my.horizontal="center"
+                  position.my.vertical="center"
+                  position.at.horizontal="center"
+                  position.at.vertical="center"
+                  position.of="window"
+                  tail="none">
+          <div>
+            <div class="oj-sm-padding-4x">
+              <div class="oj-flex oj-sm-align-items-center oj-sm-flex-direction-column">
+                <div class="oj-flex-item">
+                  <oj-progress-circle size="md"
+                                      value="-1"></oj-progress-circle>
+                </div>
+                <div class="oj-flex-item">
+                  <span>
+                    <oj-bind-text value="Loading ..."></oj-bind-text>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </oj-popup>
         <oj-module role="main" class="oj-web-applayout-content" config="[[moduleAdapter.koObservableConfig]]" style="background: #FFFFFF;">
         </oj-module>
         
