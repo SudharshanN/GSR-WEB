@@ -43,7 +43,7 @@ define([
     this.rawSymptoms = ko.observable("");
 
     this.regestrationId = ko.observable("");
-    this.rawRegestrationId = ko.observable('')
+    this.rawRegestrationId = ko.observable("");
     const genders = [
       { value: "male", label: "Male" },
       { value: "female", label: "Female" },
@@ -52,7 +52,7 @@ define([
     this.genderDP = new ArrayDataProvider(genders, {
       keyAttributes: "value",
     });
-    this.disabledUpload =  ko.pureComputed(function () {
+    this.disabledUpload = ko.pureComputed(function () {
       if (
         this.rawRegestrationId().trim().length === 0 ||
         this.frontImage().trim().length === 0
@@ -75,7 +75,7 @@ define([
       }
       return false;
     }, this);
-    
+
     this.messages = [
       {
         severity: "error",
@@ -85,7 +85,9 @@ define([
         timestamp: new Date().getTime(),
       },
     ];
-    this.messagesDataprovider = ko.observable(new ArrayDataProvider(this.messages));
+    this.messagesDataprovider = ko.observable(
+      new ArrayDataProvider(this.messages)
+    );
 
     const data = [
       {
@@ -117,7 +119,7 @@ define([
       this.context = this.canvas.getContext("2d");
     };
     this.checkNumbers = () => {
-      if(!Number(this.age())) {
+      if (!Number(this.age())) {
         const messages = [
           {
             severity: "error",
@@ -128,9 +130,9 @@ define([
           },
         ];
         this.messagesDataprovider(new ArrayDataProvider(messages));
-        this.openDialog('error');
+        this.openDialog("error");
         return false;
-      } else if(!Number(this.mobile())){
+      } else if (!Number(this.mobile())) {
         const messages = [
           {
             severity: "error",
@@ -141,61 +143,77 @@ define([
           },
         ];
         this.messagesDataprovider(new ArrayDataProvider(messages));
-        this.openDialog('error');
+        this.openDialog("error");
         return false;
-      } else if (!Number(this.familyMembers())){
+      } else if (!Number(this.familyMembers())) {
         const messages = [
           {
             severity: "error",
             summary: "Error",
-            detail: "Please enter only numbers in Number of family members field",
+            detail:
+              "Please enter only numbers in Number of family members field",
             closeAffordance: "none",
             timestamp: new Date().getTime(),
           },
         ];
         this.messagesDataprovider(new ArrayDataProvider(messages));
-        this.openDialog('error');
+        this.openDialog("error");
         return false;
       } else {
         return true;
       }
-    }
+    };
     this.submitForm = () => {
-      if(this.checkNumbers()) {
+      if (this.checkNumbers()) {
         this.openDialog("loading-popup");
-      const url =
-        "https://aluminiapi.azurewebsites.net/api/MedicalCamp/Register";
-      const body = {
-        Id: 0,
-        Name: this.name(),
-        Age: this.age(),
-        Gender: this.gender(),
-        Phone: this.mobile(),
-        Email: this.email(),
-        NoOfFamilyMembers: this.familyMembers(),
-        Adress: this.address(),
-        Symptoms: this.symptoms(),
-        CreatedDate: `${new Date()}`,
-      };
-      const headers = {
-        "Content-Type": "application/json",
-      };
+        const url =
+          "https://aluminiapi.azurewebsites.net/api/MedicalCamp/Register";
+        const body = {
+          Id: 0,
+          Name: this.name(),
+          Age: this.age(),
+          Gender: this.gender(),
+          Phone: this.mobile(),
+          Email: this.email(),
+          NoOfFamilyMembers: this.familyMembers(),
+          Adress: this.address(),
+          Symptoms: this.symptoms(),
+          CreatedDate: `${new Date()}`,
+        };
+        const headers = {
+          "Content-Type": "application/json",
+        };
 
-      axios
-        .post(url, body, JSON.stringify(headers))
-        .then((resp) => {
-          if (!resp.data.IsError) {
-            window.open(resp.data.Data.PdfFile, "_blank");
-            this.name("");
-            this.age("");
-            this.email("");
-            this.mobile("");
-            this.gender("");
-            this.familyMembers("");
-            this.address("");
-            this.symptoms("");
-            this.closeDialog("loading-popup");
-          } else {
+        axios
+          .post(url, body, JSON.stringify(headers))
+          .then((resp) => {
+            if (!resp.data.IsError) {
+              window.open(resp.data.Data.PdfFile, "_blank");
+              this.name("");
+              this.age("");
+              this.email("");
+              this.mobile("");
+              this.gender("");
+              this.familyMembers("");
+              this.address("");
+              this.symptoms("");
+              this.closeDialog("loading-popup");
+            } else {
+              this.closeDialog("loading-popup");
+              const messages = [
+                {
+                  severity: "error",
+                  summary: "Error",
+                  detail: "Something went wrong, please try again",
+                  closeAffordance: "none",
+                  timestamp: new Date().getTime(),
+                },
+              ];
+              this.messagesDataprovider(new ArrayDataProvider(messages));
+              this.openDialog("error");
+            }
+          })
+          .catch((err) => {
             this.closeDialog("loading-popup");
             const messages = [
               {
@@ -208,31 +226,20 @@ define([
             ];
             this.messagesDataprovider(new ArrayDataProvider(messages));
             this.openDialog("error");
-          }
-        })
-        .catch((err) => {
-          this.closeDialog("loading-popup");
-          const messages = [
-            {
-              severity: "error",
-              summary: "Error",
-              detail: "Something went wrong, please try again",
-              closeAffordance: "none",
-              timestamp: new Date().getTime(),
-            },
-          ];
-          this.messagesDataprovider(new ArrayDataProvider(messages));
-          this.openDialog("error");
-        });
+          });
       }
     };
     this.openDialog = (id) => {
       const dialog = document.querySelector(`#${id}`);
-      dialog?.open?.();
+      if (dialog != undefined) {
+        dialog.open();
+      }
     };
     this.closeDialog = (id) => {
       const dialog = document.querySelector(`#${id}`);
-      dialog?.close?.();
+      if (dialog != undefined) {
+        dialog.close();
+      }
     };
     this.cancelListener = () => {
       this.closeDialog("error");
@@ -248,7 +255,7 @@ define([
       this.cameraGetVideo();
     };
     this.checkNumberType = () => {
-      if(!Number(this.regestrationId())){
+      if (!Number(this.regestrationId())) {
         const messages = [
           {
             severity: "error",
@@ -263,31 +270,46 @@ define([
       } else {
         return true;
       }
-    }
+    };
     this.uploadDocs = () => {
-      if(this.checkNumberType()) {
+      if (this.checkNumberType()) {
         this.openDialog("loading-popup");
-      const url =
-        "https://aluminiapi.azurewebsites.net/api/MedicalCamp/UploadPrescription";
-      const body = {
-        Id: 0,
-        RegistrationID: Number(this.regestrationId()),
-        FrontImage: this.frontImage().replace("data:image/jpeg;base64,", ""),
-        BackImage: this.backImage().replace("data:image/jpeg;base64,", ""),
-        CreatedDate: `${new Date()}`,
-      };
-      const headers = {
-        "Content-Type": "application/json",
-      };
-      axios
-        .post(url, body, JSON.stringify(headers))
-        .then((resp) => {
-          if (resp.data.IsError) {
-            this.regestrationId("");
-            this.backImage("");
-            this.frontImage("");
-            this.closeDialog("loading-popup");
-          } else {
+        const url =
+          "https://aluminiapi.azurewebsites.net/api/MedicalCamp/UploadPrescription";
+        const body = {
+          Id: 0,
+          RegistrationID: Number(this.regestrationId()),
+          FrontImage: this.frontImage().replace("data:image/jpeg;base64,", ""),
+          BackImage: this.backImage().replace("data:image/jpeg;base64,", ""),
+          CreatedDate: `${new Date()}`,
+        };
+        const headers = {
+          "Content-Type": "application/json",
+        };
+        axios
+          .post(url, body, JSON.stringify(headers))
+          .then((resp) => {
+            if (resp.data.IsError) {
+              this.regestrationId("");
+              this.backImage("");
+              this.frontImage("");
+              this.closeDialog("loading-popup");
+            } else {
+              this.closeDialog("loading-popup");
+              const messages = [
+                {
+                  severity: "error",
+                  summary: "Error",
+                  detail: "Something went wrong, please try again",
+                  closeAffordance: "none",
+                  timestamp: new Date().getTime(),
+                },
+              ];
+              this.messagesDataprovider(new ArrayDataProvider(messages));
+              this.openDialog("error");
+            }
+          })
+          .catch((err) => {
             this.closeDialog("loading-popup");
             const messages = [
               {
@@ -300,26 +322,8 @@ define([
             ];
             this.messagesDataprovider(new ArrayDataProvider(messages));
             this.openDialog("error");
-          }
-          
-        })
-        .catch((err) => {
-          this.closeDialog("loading-popup");
-          const messages = [
-            {
-              severity: "error",
-              summary: "Error",
-              detail: "Something went wrong, please try again",
-              closeAffordance: "none",
-              timestamp: new Date().getTime(),
-            },
-          ];
-          this.messagesDataprovider(new ArrayDataProvider(messages));
-          this.openDialog("error");
-          
-        });
+          });
       }
-      
     };
     this.cameraGetVideo = function () {
       this.player = document.getElementById("player");
