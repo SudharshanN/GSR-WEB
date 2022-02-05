@@ -23,17 +23,27 @@ define([
   "ojs/ojpopup",
   "ojs/ojnavigationlist",
   "ojs/ojdialog",
-  "ojs/ojinputnumber"
+  "ojs/ojinputnumber",
 ], function (accUtils, ko, axios, $, ArrayDataProvider) {
   function AboutViewModel() {
     this.name = ko.observable("");
     this.age = ko.observable();
     this.email = ko.observable("");
-    (this.mobile = ko.observable("")), (this.gender = ko.observable(""));
+    this.mobile = ko.observable("");
+    this.gender = ko.observable("");
     this.familyMembers = ko.observable();
     this.address = ko.observable("");
     this.symptoms = ko.observable("");
-    this.regestrationId = ko.observable('');
+
+    this.rawName = ko.observable("");
+    this.rawAge = ko.observable();
+    this.rawMobile = ko.observable("");
+    this.rawFamilyMembers = ko.observable();
+    this.rawAddress = ko.observable("");
+    this.rawSymptoms = ko.observable("");
+
+    this.regestrationId = ko.observable("");
+    this.rawRegestrationId = ko.observable('')
     const genders = [
       { value: "male", label: "Male" },
       { value: "female", label: "Female" },
@@ -42,6 +52,30 @@ define([
     this.genderDP = new ArrayDataProvider(genders, {
       keyAttributes: "value",
     });
+    this.disabledUpload =  ko.pureComputed(function () {
+      if (
+        this.rawRegestrationId().trim().length === 0 ||
+        this.frontImage().trim().length === 0
+      ) {
+        return true;
+      }
+      return false;
+    }, this);
+    this.disabled = ko.pureComputed(function () {
+      if (
+        this.rawName().trim().length === 0 ||
+        this.rawAge().trim().length === 0 ||
+        this.rawMobile().trim().length === 0 ||
+        this.gender().trim().length === 0 ||
+        this.rawAddress().trim().length === 0 ||
+        this.rawFamilyMembers().trim().length === 0 ||
+        this.rawSymptoms().trim().length === 0
+      ) {
+        return true;
+      }
+      return false;
+    }, this);
+    
     this.messages = [
       {
         severity: "error",
@@ -54,33 +88,36 @@ define([
     this.messagesDataprovider = new ArrayDataProvider(this.messages);
 
     const data = [
-      { name: "Regestration", id: "regestration", icons: "oj-ux-ico-add-edit-page" },
+      {
+        name: "Regestration",
+        id: "regestration",
+        icons: "oj-ux-ico-add-edit-page",
+      },
       {
         name: "Upload Prescription",
         id: "prescription",
-        icons: "oj-ux-ico-upload"
-      }
+        icons: "oj-ux-ico-upload",
+      },
     ];
     this.selectedItem = ko.observable("regestration");
     this.display = ko.observable("all");
     this.edge = ko.observable("top");
     this.dataProvider = new ArrayDataProvider(data, { keyAttributes: "id" });
 
-
-    this.player ;
-    this.canvas ;
-    this.context ;
+    this.player;
+    this.canvas;
+    this.context;
 
     this.connected = () => {
       window.scrollTo(0, 0);
       accUtils.announce("Health Campiagn page loaded.", "assertive");
       document.title = "Health Campiagn";
-      this.player = document.getElementById('player');
-      this.canvas = document.getElementById('canvas');
-      this.context = this.canvas.getContext('2d');
+      this.player = document.getElementById("player");
+      this.canvas = document.getElementById("canvas");
+      this.context = this.canvas.getContext("2d");
     };
     this.submitForm = () => {
-      this.openDialog('loading-popup');
+      this.openDialog("loading-popup");
       const url =
         "https://aluminiapi.azurewebsites.net/api/MedicalCamp/Register";
       const body = {
@@ -98,7 +135,7 @@ define([
       const headers = {
         "Content-Type": "application/json",
       };
-     
+
       axios
         .post(url, body, JSON.stringify(headers))
         .then((resp) => {
@@ -113,13 +150,13 @@ define([
             this.address("");
             this.symptoms("");
           } else {
-            this.openDialog('error');
+            this.openDialog("error");
           }
-          this.closeDialog('loading-popup');
+          this.closeDialog("loading-popup");
         })
         .catch((err) => {
-          this.openDialog('error');
-          this.closeDialog('loading-popup');
+          this.openDialog("error");
+          this.closeDialog("loading-popup");
         });
     };
     this.openDialog = (id) => {
@@ -131,83 +168,88 @@ define([
       dialog?.close?.();
     };
     this.cancelListener = () => {
-      this.closeDialog('error');
+      this.closeDialog("error");
     };
     this.uploadFront = (event) => {
-      this.action('front');
-      this.openDialog('image');
+      this.action("front");
+      this.openDialog("image");
       this.cameraGetVideo();
-    }
+    };
     this.uploadBack = (event) => {
-      this.action('back');
-      this.openDialog('image');
+      this.action("back");
+      this.openDialog("image");
       this.cameraGetVideo();
-    }
+    };
     this.uploadDocs = () => {
-      this.openDialog('loading-popup');
+      this.openDialog("loading-popup");
       const url =
-      "https://aluminiapi.azurewebsites.net/api/MedicalCamp/UploadPrescription";
-    const body = {
-      Id: 0,
-      RegistrationID : Number(this.regestrationId()),
-      FrontImage: this.frontImage().replace('data:image/jpeg;base64,',''),
-      BackImage: this.backImage().replace('data:image/jpeg;base64,',''),
-      CreatedDate: `${new Date()}`,
+        "https://aluminiapi.azurewebsites.net/api/MedicalCamp/UploadPrescription";
+      const body = {
+        Id: 0,
+        RegistrationID: Number(this.regestrationId()),
+        FrontImage: this.frontImage().replace("data:image/jpeg;base64,", ""),
+        BackImage: this.backImage().replace("data:image/jpeg;base64,", ""),
+        CreatedDate: `${new Date()}`,
+      };
+      const headers = {
+        "Content-Type": "application/json",
+      };
+      axios
+        .post(url, body, JSON.stringify(headers))
+        .then((resp) => {
+          if (!resp.data.IsError) {
+            this.regestrationId("");
+            this.backImage("");
+            this.frontImage("");
+          } else {
+            this.openDialog("error");
+          }
+          this.closeDialog("loading-popup");
+        })
+        .catch((err) => {
+          this.openDialog("error");
+          this.closeDialog("loading-popup");
+        });
     };
-    const headers = {
-      "Content-Type": "application/json",
-    };
-    axios
-      .post(url, body, JSON.stringify(headers))
-      .then((resp) => {
-        if (!resp.data.IsError) {
-          this.regestrationId('');
-          this.backImage('');
-          this.frontImage('');
-        } else {
-          this.openDialog('error');
-        }
-        this.closeDialog('loading-popup');
-      })
-      .catch((err) => {
-        this.openDialog('error');
-        this.closeDialog('loading-popup');
-      });
-    }
     this.cameraGetVideo = function () {
-      this.player = document.getElementById('player');
-      this.canvas = document.getElementById('canvas');
-      this.context = this.canvas.getContext('2d');
+      this.player = document.getElementById("player");
+      this.canvas = document.getElementById("canvas");
+      this.context = this.canvas.getContext("2d");
 
       const constraints = {
         video: { facingMode: { exact: "environment" } },
       };
-      navigator.mediaDevices.getUserMedia(constraints)
-        .then((stream) => {
-          this.player.srcObject = stream;
-        });
-    }
+      navigator.mediaDevices.getUserMedia(constraints).then((stream) => {
+        this.player.srcObject = stream;
+      });
+    };
     this.cameraGetImage = () => {
-      this.context.drawImage(this.player, 0, 0, this.canvas.width, this.canvas.height);
-      this.player.srcObject.getVideoTracks().forEach(track => track.stop());
+      this.context.drawImage(
+        this.player,
+        0,
+        0,
+        this.canvas.width,
+        this.canvas.height
+      );
+      this.player.srcObject.getVideoTracks().forEach((track) => track.stop());
       this.cameraGetVideo();
-    }
+    };
     this.closeCam = () => {
       this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
-      this.player.srcObject.getVideoTracks().forEach(track => track.stop());
-    }
-    this.frontImage = ko.observable('');
-    this.backImage = ko.observable('');
-    this.action = ko.observable('front');
+      this.player.srcObject.getVideoTracks().forEach((track) => track.stop());
+    };
+    this.frontImage = ko.observable("");
+    this.backImage = ko.observable("");
+    this.action = ko.observable("front");
     this.cameraSaveImage = () => {
-      var dt = this.canvas.toDataURL('image/jpeg');
-      if(this.action() === 'front'){
+      var dt = this.canvas.toDataURL("image/jpeg");
+      if (this.action() === "front") {
         this.frontImage(dt);
       } else {
         this.backImage(dt);
       }
-      this.closeDialog('image');
-    }
+      this.closeDialog("image");
+    };
     /**
      * Optional ViewModel method invoked after the View is disconnected from the DOM.
      */
