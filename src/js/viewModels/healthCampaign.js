@@ -85,7 +85,7 @@ define([
         timestamp: new Date().getTime(),
       },
     ];
-    this.messagesDataprovider = new ArrayDataProvider(this.messages);
+    this.messagesDataprovider = ko.observable(new ArrayDataProvider(this.messages));
 
     const data = [
       {
@@ -116,8 +116,53 @@ define([
       this.canvas = document.getElementById("canvas");
       this.context = this.canvas.getContext("2d");
     };
+    this.checkNumbers = () => {
+      if(!Number(this.age())) {
+        const messages = [
+          {
+            severity: "error",
+            summary: "Error",
+            detail: "Please enter only numbers in Age field",
+            closeAffordance: "none",
+            timestamp: new Date().getTime(),
+          },
+        ];
+        this.messagesDataprovider(new ArrayDataProvider(messages));
+        this.openDialog('error');
+        return false;
+      } else if(!Number(this.mobile())){
+        const messages = [
+          {
+            severity: "error",
+            summary: "Error",
+            detail: "Please enter only numbers in Mobile Number field",
+            closeAffordance: "none",
+            timestamp: new Date().getTime(),
+          },
+        ];
+        this.messagesDataprovider(new ArrayDataProvider(messages));
+        this.openDialog('error');
+        return false;
+      } else if (!Number(this.familyMembers())){
+        const messages = [
+          {
+            severity: "error",
+            summary: "Error",
+            detail: "Please enter only numbers in Number of family members field",
+            closeAffordance: "none",
+            timestamp: new Date().getTime(),
+          },
+        ];
+        this.messagesDataprovider(new ArrayDataProvider(messages));
+        this.openDialog('error');
+        return false;
+      } else {
+        return true;
+      }
+    }
     this.submitForm = () => {
-      this.openDialog("loading-popup");
+      if(this.checkNumbers()) {
+        this.openDialog("loading-popup");
       const url =
         "https://aluminiapi.azurewebsites.net/api/MedicalCamp/Register";
       const body = {
@@ -149,15 +194,37 @@ define([
             this.familyMembers("");
             this.address("");
             this.symptoms("");
+            this.closeDialog("loading-popup");
           } else {
+            this.closeDialog("loading-popup");
+            const messages = [
+              {
+                severity: "error",
+                summary: "Error",
+                detail: "Something went wrong, please try again",
+                closeAffordance: "none",
+                timestamp: new Date().getTime(),
+              },
+            ];
+            this.messagesDataprovider(new ArrayDataProvider(messages));
             this.openDialog("error");
           }
-          this.closeDialog("loading-popup");
         })
         .catch((err) => {
-          this.openDialog("error");
           this.closeDialog("loading-popup");
+          const messages = [
+            {
+              severity: "error",
+              summary: "Error",
+              detail: "Something went wrong, please try again",
+              closeAffordance: "none",
+              timestamp: new Date().getTime(),
+            },
+          ];
+          this.messagesDataprovider(new ArrayDataProvider(messages));
+          this.openDialog("error");
         });
+      }
     };
     this.openDialog = (id) => {
       const dialog = document.querySelector(`#${id}`);
@@ -180,8 +247,26 @@ define([
       this.openDialog("image");
       this.cameraGetVideo();
     };
+    this.checkNumberType = () => {
+      if(!Number(this.regestrationId())){
+        const messages = [
+          {
+            severity: "error",
+            summary: "Error",
+            detail: "Please enter numbers only in Registration field",
+            closeAffordance: "none",
+            timestamp: new Date().getTime(),
+          },
+        ];
+        this.messagesDataprovider(new ArrayDataProvider(messages));
+        this.openDialog("error");
+      } else {
+        return true;
+      }
+    }
     this.uploadDocs = () => {
-      this.openDialog("loading-popup");
+      if(this.checkNumberType()) {
+        this.openDialog("loading-popup");
       const url =
         "https://aluminiapi.azurewebsites.net/api/MedicalCamp/UploadPrescription";
       const body = {
@@ -197,19 +282,44 @@ define([
       axios
         .post(url, body, JSON.stringify(headers))
         .then((resp) => {
-          if (!resp.data.IsError) {
+          if (resp.data.IsError) {
             this.regestrationId("");
             this.backImage("");
             this.frontImage("");
+            this.closeDialog("loading-popup");
           } else {
+            this.closeDialog("loading-popup");
+            const messages = [
+              {
+                severity: "error",
+                summary: "Error",
+                detail: "Something went wrong, please try again",
+                closeAffordance: "none",
+                timestamp: new Date().getTime(),
+              },
+            ];
+            this.messagesDataprovider(new ArrayDataProvider(messages));
             this.openDialog("error");
           }
-          this.closeDialog("loading-popup");
+          
         })
         .catch((err) => {
-          this.openDialog("error");
           this.closeDialog("loading-popup");
+          const messages = [
+            {
+              severity: "error",
+              summary: "Error",
+              detail: "Something went wrong, please try again",
+              closeAffordance: "none",
+              timestamp: new Date().getTime(),
+            },
+          ];
+          this.messagesDataprovider(new ArrayDataProvider(messages));
+          this.openDialog("error");
+          
         });
+      }
+      
     };
     this.cameraGetVideo = function () {
       this.player = document.getElementById("player");

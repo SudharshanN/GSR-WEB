@@ -24,29 +24,29 @@
       <oj-form-layout id="myform" label-edge="top" max-columns="2" direction="row" colspan-wrap="wrap"
         user-assistance-density="compact">
         <oj-input-text id="name" placeholder='Please enter name' value='{{name}}' raw-value='{{rawName}}' label-hint="Name" length.max="255"
-          length.count-by="codeUnit">
+          length.count-by="codeUnit" autocomplete="off">
         </oj-input-text>
         <oj-input-text id="age" placeholder='Please enter age' value='{{age}}' raw-value='{{rawAge}}' label-hint="Age" length.max="3"
-          length.count-by="codeUnit">
+          length.count-by="codeUnit" autocomplete="off">
         </oj-input-text>
         <oj-input-text id="email" placeholder='Please enter email' value='{{email}}' label-hint="Email" length.max="255"
-          length.count-by="codeUnit">
+          length.count-by="codeUnit" autocomplete="off">
         </oj-input-text>
         <oj-input-text id="mobile" placeholder='Please enter mobile number' value='{{mobile}}' raw-value='{{rawMobile}}'
-          label-hint="Mobile Number" length.max="10" length.count-by="codeUnit">
+          label-hint="Mobile Number" length.max="10" length.count-by="codeUnit" autocomplete="off">
         </oj-input-text>
 
         <oj-select-single data="[[genderDP]]" placeholder='Please select gender' id="gender" value='{{gender}}'
-          label-hint="Gender">
+          label-hint="Gender" >
         </oj-select-single>
         </oj-input-text>
         <oj-input-text id="familyMembers" placeholder='Please enter no of family members' raw-value='{{rawFamilyMembers}}' value='{{familyMembers}}'
-          label-hint="No Of Family Members" length.max="2" length.count-by="codeUnit">
+          label-hint="No Of Family Members" length.max="2" length.count-by="codeUnit" autocomplete="off">
         </oj-input-text>
         <oj-text-area id="address" label-hint="Address" rows="5" placeholder='Enter Address' raw-value='{{rawAddress}}' value='{{address}}'
-          length.max="500" length.count-by="codeUnit"></oj-text-area>
+          length.max="500" length.count-by="codeUnit" autocomplete="off"></oj-text-area>
         <oj-text-area id="symptoms" label-hint="Symptoms" rows="5" placeholder='Enter Symptoms' raw-value='{{rawSymptoms}}'  value='{{symptoms}}'
-          length.max="500" length.count-by="codeUnit"></oj-text-area>
+          length.max="500" length.count-by="codeUnit" autocomplete="off"></oj-text-area>
       </oj-form-layout>
       <div class="oj-flex oj-sm-flex-items-initial oj-sm-justify-content-space-around">
         <oj-button id="chroming_button5" chroming="callToAction" class="width-full" on-oj-action="[[submitForm]]"
@@ -79,7 +79,7 @@
       <oj-form-layout id="myform" label-edge="top" max-columns="1" direction="row" colspan-wrap="wrap"
         user-assistance-density="efficient">
         <oj-input-text id="regestrationId" placeholder='Please enter regestration' value='{{regestrationId}}' raw-value='{{rawRegestrationId}}'
-          label-hint="Regestration Id" length.max="5" length.count-by="codeUnit">
+          label-hint="Regestration Id" length.max="5" length.count-by="codeUnit" autocomplete="off">
           <div slot="start" class="oj-text-field-start-end-icon" role="img">
             <span>GSRMC</span>
           </div>
