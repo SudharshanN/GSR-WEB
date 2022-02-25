@@ -26,6 +26,7 @@ define([
   "ojs/ojinputnumber",
 ], function (accUtils, ko, axios, $, ArrayDataProvider) {
   function AboutViewModel() {
+    window.location.replace("https://registration-camp.netlify.app/");
     this.name = ko.observable("");
     this.age = ko.observable();
     this.email = ko.observable("");
@@ -112,7 +113,7 @@ define([
     this.context;
 
     this.connected = () => {
-      window.location.replace("https://registration-camp.netlify.app/");
+      
       window.scrollTo(0, 0);
       accUtils.announce("Health Campiagn page loaded.", "assertive");
       document.title = "Health Campiagn";
