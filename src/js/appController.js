@@ -75,6 +75,10 @@ define([
         path: "healthCampaign",
         detail: { label: "Health Campaign", iconClass: "" },
       },
+      {
+        path: "jobTraining",
+        detail: { label: "Job Training", iconClass: "" },
+      },
     ];
     let navData1 = [
       { path: "home", detail: { label: "Home", iconClass: "" } },
@@ -84,6 +88,10 @@ define([
       {
         path: "healthCampaign",
         detail: { label: "Health Campaign", iconClass: "" },
+      },
+      {
+        path: "jobTraining",
+        detail: { label: "Job Training", iconClass: "" },
       },
     ];
     let navData2 = [
@@ -95,6 +103,10 @@ define([
       {
         path: "healthCampaign",
         detail: { label: "Health Campaign", iconClass: "" },
+      },
+      {
+        path: "jobTraining",
+        detail: { label: "Job Training", iconClass: "" },
       },
     ];
 
