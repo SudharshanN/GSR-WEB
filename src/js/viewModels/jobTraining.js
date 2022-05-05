@@ -11,7 +11,7 @@
 define(['../accUtils'],
  function(accUtils) {
     function JobTrainingViewModel() {
-        window.location.replace("https://print-in-reg-merge--home-drgsrtrust.netlify.app/?ojr=job-registration&no-auth=true");
+        window.location.replace("https://home-drgsrtrust.netlify.app/?ojr=job-registration&no-auth=true");
       // Below are a set of the ViewModel methods invoked by the oj-module component.
       // Please reference the oj-module jsDoc for additional information.
 

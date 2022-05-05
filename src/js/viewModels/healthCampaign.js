@@ -26,7 +26,7 @@ define([
   "ojs/ojinputnumber",
 ], function (accUtils, ko, axios, $, ArrayDataProvider) {
   function AboutViewModel() {
-    window.location.replace("https://print-in-reg-merge--home-drgsrtrust.netlify.app/?ojr=registration&no-auth=true");
+    window.location.replace("https://home-drgsrtrust.netlify.app/?ojr=registration&no-auth=true");
     this.name = ko.observable("");
     this.age = ko.observable();
     this.email = ko.observable("");
